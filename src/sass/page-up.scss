@@ -1,6 +1,21 @@
+// mobile first
 .page-up {
   position: fixed;
   right: 20px;
   bottom: 30px;
   opacity: 0.5;
+}
+
+// Media querries
+
+// tablet
+// @media screen and (width >=768px) {
+// }
+
+// desktop
+@media screen and (width >=1024px) {
+  .page-up {
+    right: 30px;
+    bottom: 145;
+  }
 }

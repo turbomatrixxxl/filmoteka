@@ -1,9 +1,7 @@
 // Modern-normalize styles
-
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
 // Font styles
-
 .roboto-regular {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -16,8 +14,7 @@
   font-style: normal;
 }
 
-// root colors
-
+// root colors and fonts
 :root {
   --font-family: 'Roboto', sans-serif;
   --white: #fff;
@@ -35,7 +32,6 @@
 }
 
 /* Global styles */
-
 html {
   scroll-behavior: smooth;
 }
@@ -52,14 +48,12 @@ html {
 }
 
 // scoatem marcajele listei
-
 ul {
   list-style-type: none;
   padding: 0;
 }
 
 /* setare necesara pentru imagini adaptive */
-
 img {
   display: block;
   max-width: 100%;
@@ -68,14 +62,12 @@ img {
 }
 
 // scoatem underline la link
-
 a {
   text-decoration: none;
   display: block;
 }
 
 //   setam body pe relative pentru celelalte pozitii si modal
-
 body {
   position: relative;
 }
@@ -83,7 +75,6 @@ body {
 //   Classes
 
 // mobile first
-
 .header-container {
   height: 230px;
 }
@@ -106,6 +97,7 @@ body {
 
 // Media querries
 
+// tablet
 @media screen and (width >=768px) {
   .hero-section {
     margin-left: 75px;
@@ -121,6 +113,7 @@ body {
   }
 }
 
+// desktop
 @media screen and (width >=1024px) {
   .hero-section {
     margin-left: 71px;
