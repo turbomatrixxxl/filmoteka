@@ -1,6 +1,35 @@
+// mobile first
 .page-up {
   position: fixed;
   right: 20px;
   bottom: 30px;
-  opacity: 0.5;
+  opacity: 0.8;
+}
+
+.icon {
+  cursor: pointer;
+  fill: var(--red);
+  display: inline-block;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+// Media querries
+
+// tablet
+// @media screen and (width >=768px) {
+// }
+
+// desktop
+@media screen and (width >=1024px) {
+  .page-up {
+    right: 30px;
+    bottom: 145;
+  }
 }
