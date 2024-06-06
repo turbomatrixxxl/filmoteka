@@ -1,3 +1,231 @@
 .header-container {
-  background-color: bisque;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 20px 20px 0;
+  padding: 14px 14px 24px;
+
+  height: 460px;
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+      274deg,
+      rgba(0, 0, 0, 0.49) -2.09%,
+      rgba(0, 0, 0, 0) 99.83%
+    ),
+    lightgray 0px -194px / 100% 216.456% no-repeat;
+  background-image: url(../images/header-background.png);
+
+  background-size: 100vw 100vh;
+}
+
+.header-first-line-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-home-library-container {
+  display: flex;
+  gap: 4px;
+}
+
+.header-home-button {
+  display: flex;
+  padding: 10px 26px;
+  align-items: flex-start;
+  gap: 10px;
+
+  border: none;
+  border-radius: 100px;
+  background: var(--white);
+
+  color: var(--black);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.header-library-button {
+  display: flex;
+  padding: 10px 22px;
+  align-items: flex-start;
+  gap: 10px;
+
+  border: none;
+  border-radius: 100px;
+  background: var(--black);
+
+  color: var(--white);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* toggle in label designing */
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 22px;
+  background-color: var(--light-gray);
+  border-radius: 30px;
+  border: 1px;
+}
+
+/* After slide changes */
+.toggle:after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--red);
+  top: 1px;
+  left: 1px;
+  transition: all 0.5s;
+}
+
+.theme-on-of {
+  display: inline-flex;
+  padding: 2.5px;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Toggle text */
+span {
+  display: inline-block;
+  font-size: 9px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Checkbox checked effect */
+.checkbox:checked + .toggle::after {
+  left: 19px;
+}
+
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+  background-color: var(--white);
+  border: 1px solid var(--red);
+}
+
+/* Checkbox vanished */
+.checkbox {
+  display: none;
+}
+
+.search-form {
+  position: relative;
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.search-form__input {
+  width: 100%;
+  padding: 4px 2px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--white);
+  outline: none;
+  color: var(--white);
+}
+
+.search-form__input::placeholder {
+  color: var(--white);
+}
+
+.search-form__button {
+  height: 20px;
+  width: 20px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  position: absolute;
+  top: 6px;
+  right: 0px;
+}
+
+.search-form__icon {
+  stroke-width: 3px;
+  stroke: white;
+  fill: var(--red);
+}
+
+// Media querries pentru tableta si desktop
+@media screen and (width >=768px) {
+  .header-container {
+    margin: 32px 32px 0;
+    padding: 16px;
+
+    height: 222px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        274deg,
+        rgba(0, 0, 0, 0.49) -2.09%,
+        rgba(0, 0, 0, 0) 99.83%
+      ),
+      lightgray -4.19px -124.143px / 119.345% 213.491% no-repeat;
+    background-image: url(../images/header-background-2x.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  .header-home-button {
+    padding: 12px 24px;
+  }
+
+  .header-library-button {
+    padding: 12px 20px;
+  }
+
+  .search-form {
+    width: 400px;
+  }
+}
+
+@media screen and (width >=1024px) {
+  .header-container {
+    padding: 16px 32px 32px;
+
+    height: 316px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        274deg,
+        rgba(0, 0, 0, 0.49) -2.09%,
+        rgba(0, 0, 0, 0) 99.83%
+      ),
+      lightgray 0px -194px / 100% 216.456% no-repeat;
+    background-image: url(../images/header-background-2x\(1\).png);
+  }
+
+  .header-home-library-container {
+    gap: 8px;
+  }
+
+  .header-home-button {
+    padding: 14px 32px;
+  }
+
+  .header-library-button {
+    padding: 14px 24px;
+  }
 }

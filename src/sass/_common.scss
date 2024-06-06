@@ -56,8 +56,8 @@ ul {
 /* setare necesara pentru imagini adaptive */
 img {
   display: block;
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -70,15 +70,12 @@ a {
 //   setam body pe relative pentru celelalte pozitii si modal
 body {
   position: relative;
+  background-color: var(--white);
 }
 
 //   Classes
 
 // mobile first
-.header-container {
-  height: 230px;
-}
-
 .hero-section {
   margin: 20px;
   margin-bottom: 40px;
@@ -97,6 +94,10 @@ body {
 
 // Media querries pentru tableta si desktop
 @media screen and (width >=768px) {
+  .header-container {
+    height: 222px;
+  }
+
   .hero-section {
     margin-left: 75px;
     margin-right: 75px;
@@ -112,6 +113,10 @@ body {
 }
 
 @media screen and (width >=1024px) {
+  .header-container {
+    height: 316px;
+  }
+
   .hero-section {
     margin-left: 71px;
     margin-right: 71px;

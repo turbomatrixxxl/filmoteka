@@ -1,6 +1,46 @@
-<div class="header-container">
-  header-container
-  <svg class="icon" width="30" height="30">
-    <use href="./images/icons.svg#icon-heart"></use>
-  </svg>
-</div>
+<header class="header-container">
+  <div class="header-first-line-buttons">
+    <div class="header-home-library-container">
+      <button class="header-home-button">Home</button>
+      <button class="header-library-button">My Library</button>
+    </div>
+    <div class="header-theme-switcher">
+      <input type="checkbox" id="switch" class="checkbox" />
+
+      <label for="switch" class="toggle">
+        <p class="theme-on-of">
+          <span>OFF</span>
+          <span>ON</span>
+        </p>
+      </label>
+    </div>
+  </div>
+
+  <form class="search-form" style="display: block">
+    <input
+      class="search-form__input"
+      name="query"
+      placeholder="Movie search"
+      aria-label="movie search"
+      autocomplete="off"
+    />
+    <button type="submit" class="search-form__button" aria-label="search">
+      <svg class="search-form__icon" width="12" height="12">
+        <use href="./images/icons.svg#icon-search"></use>
+      </svg>
+    </button>
+  </form>
+
+  <div class="header-bottom-line">
+    <div class="header-bottom-icon-and-title">
+      <svg class="bottom-movie-icon">
+        <use href="./images/icons.svg#icon-search"></use>
+      </svg>
+      <h1 class="header-main-title">Filmoteka</h1>
+    </div>
+    <div class="bottom-buttons">
+      <button type="button" class="header-watched-button">Watched</button>
+      <button type="button" class="header-queue-button">queue</button>
+    </div>
+  </div>
+</header>
