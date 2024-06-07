@@ -76,12 +76,12 @@ body {
 
 // mobile first
 .header-container {
+  margin: 20px 20px 0;
   height: 230px;
 }
 
 .hero-section {
-  margin: 20px;
-  margin-bottom: 40px;
+  margin: 20px 20px 40px;
   height: 100%;
 }
 
@@ -100,11 +100,7 @@ body {
 // tablet
 @media screen and (width >=768px) {
   .hero-section {
-    margin-left: 75px;
-    margin-right: 75px;
-
-    margin-top: 60px;
-    margin-bottom: 50px;
+    margin: 32px 32px 50px;
   }
 
   .footer-container {
@@ -114,10 +110,8 @@ body {
 }
 
 // desktop
-@media screen and (width >=1024px) {
+@media screen and (width >=1280px) {
   .hero-section {
-    margin-left: 71px;
-    margin-right: 71px;
     margin-bottom: 46px;
   }
 }
