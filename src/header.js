@@ -1,4 +1,3 @@
-// HEADER
 const body = document.body;
 
 const darkThemeButton = document.querySelector('.checkbox');
@@ -15,7 +14,9 @@ const headerClearWatchedButton = document.querySelector(
   '.header-clear-watched-button'
 );
 
-const headerQueuedButton = document.querySelector('.header-queue-button');
+export const headerQueuedButton = document.querySelector(
+  '.header-queue-button'
+);
 
 const headerClearQueuedButton = document.querySelector(
   '.header-clear-queue-button'
