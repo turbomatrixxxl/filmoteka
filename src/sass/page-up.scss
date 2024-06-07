@@ -33,3 +33,17 @@ Single-colored icons can be modified like so:
     bottom: 145;
   }
 }
+
+// Media querries
+
+// tablet
+// @media screen and (width >=768px) {
+// }
+
+// desktop
+@media screen and (width >=1024px) {
+  .page-up {
+    right: 30px;
+    bottom: 145;
+  }
+}
