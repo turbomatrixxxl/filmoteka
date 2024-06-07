@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  margin: 20px 20px 0;
   padding: 14px 14px 24px;
 
   height: 460px;
@@ -343,7 +342,6 @@ span {
 // Media querries pentru tableta si desktop
 @media screen and (width >=768px) {
   .header-container {
-    margin: 32px 32px 0;
     padding: 16px;
 
     height: 222px;
