@@ -1,3 +1,35 @@
 .page-changer-container {
-  background-color: aqua;
+  // background-color: aqua;
+}
+.pagination {
+  display: flex;
+  width: 374px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.pagination-link {
+  justify-content: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Roboto;
+  color: #000;
+  line-height: 1.33;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &.active {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #b92f2c;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
