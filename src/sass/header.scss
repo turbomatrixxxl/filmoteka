@@ -1,3 +1,85 @@
+//mobile
+
 .header-container {
-  background-color: bisque;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 65.37%
+    ),
+    url(../images/abstract-background-with-red-lines\ 1.jpg) lightgray -108.957px -57.443px /
+      338.962% 116.387%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 460px;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  overflow-x: hidden;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  justify-content: flex-start;
+  margin-left: 14px;
+  margin-top: 14px;
+  flex-shrink: 1;
+}
+.home-button {
+  background-color: white;
+  border-radius: 100px;
+  border-style: none;
+  padding: 10px 26px;
+  flex-shrink: 1;
+}
+
+.library-button {
+  background-color: white;
+  border-style: none;
+  border-radius: 100px;
+  padding: 10px 22px;
+  flex-shrink: 1;
+}
+
+.search-form {
+  display: flex;
+  flex-shrink: 1;
+  position: absolute;
+  top: 60px;
+  left: 35px;
+  width: 252px;
+}
+
+.search-bar {
+  display: flex; /* Add flexbox */
+  align-items: center; /* Vertically center items */
+  width: 100%; /* Full width of the search form */
+  max-width: 100%; /* Maximum width */
+  border-radius: 100px;
+  background: #fff;
+  height: 34px;
+  border-style: none;
+  padding-bottom: 3px;
+}
+
+::placeholder {
+  color: #000;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 14px;
+}
+
+//tablet
+@media only screen and (width >=768px) {
+}
+
+//laptop
+@media only screen and (width >=1024px) {
 }
