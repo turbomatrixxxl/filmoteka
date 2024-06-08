@@ -18,7 +18,8 @@
     "url": "https://github.com/turbomatrixxxl/filmoteka/issues"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "modern-normalize": "^1.1.0",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
