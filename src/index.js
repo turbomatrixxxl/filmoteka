@@ -1,72 +1,68 @@
 //PAGE CHANGER
 document.addEventListener('DOMContentLoaded', function () {
   const paginationSection = document.querySelector('.pagination-section');
-  const pageBtns = paginationSection.querySelectorAll('.page-btn');
   const paginationBtns = paginationSection.querySelectorAll(
     '.pagination-btns li'
   );
-  const currentPage = 1;
+  const paginationNumbers = paginationSection.querySelectorAll(
+    '.pagination-btns li.page'
+  );
+  const prevButton = paginationSection.querySelector('.page-btn.prev');
+  const nextButton = paginationSection.querySelector('.page-btn.next');
+  let currentPage = 1;
+  let totalPages = Math.ceil(paginationNumbers.length / 5);
 
-  pageBtns.forEach(btn => {
+  // Add event listeners to page numbers
+  paginationNumbers.forEach(btn => {
     btn.addEventListener('click', event => {
-      if (event.target.classList.contains('prev')) {
-        currentPage -= 1;
-        if (currentPage < 1) {
-          currentPage = 1;
-        }
-      } else if (event.target.classList.contains('next')) {
-        currentPage += 1;
-        if (currentPage > paginationBtns.length - 2) {
-          currentPage = paginationBtns.length - 2;
-        }
-      }
+      console.log('Page number clicked:', event.target.textContent);
+      currentPage = parseInt(event.target.textContent, 10);
       updatePagination();
     });
   });
 
+  // Add event listeners to next/prev buttons
+  prevButton.addEventListener('click', event => {
+    console.log('Prev button clicked');
+    if (currentPage > 1) {
+      currentPage -= 1;
+    }
+    updatePagination();
+  });
+
+  nextButton.addEventListener('click', event => {
+    console.log('Next button clicked');
+    if (currentPage < totalPages) {
+      currentPage += 1;
+    }
+    updatePagination();
+  });
+
   function updatePagination() {
-    const currentPageElement = paginationSection.querySelector(
-      '.pagination-btns li.active'
-    );
-    const prevPageElement = paginationSection.querySelector(
-      '.pagination-btns li.page:nth-child(' + (currentPage - 1) + ')'
-    );
-    const nextPageElement = paginationSection.querySelector(
-      '.pagination-btns li.page:nth-child(' + (currentPage + 1) + ')'
-    );
+    console.log('Current page:', currentPage);
+    console.log('Total pages:', totalPages);
+    // Hide all page numbers and then show them again
+    paginationNumbers.forEach(page => {
+      page.classList.add('is-hidden');
+    });
+    paginationNumbers.forEach(page => {
+      if (page.classList.contains('page')) {
+        page.classList.remove('is-hidden');
+      }
+    });
 
-    if (currentPageElement !== null) {
-      currentPageElement.classList.remove('active');
-    }
-    if (prevPageElement !== null) {
-      prevPageElement.classList.remove('is-hidden');
-      prevPageElement.classList.add('active');
-    }
-    if (nextPageElement !== null) {
-      nextPageElement.classList.remove('active');
-      nextPageElement.classList.add('is-hidden');
-    }
+    // Update the active class
+    paginationNumbers.forEach(page => {
+      page.classList.remove('active');
+      if (parseInt(page.textContent, 10) === currentPage) {
+        page.classList.add('active');
+      }
+    });
 
-    const firstVisiblePage = Math.max(1, currentPage - 2);
-    const lastVisiblePage = Math.min(
-      paginationBtns.length - 2,
-      currentPage + 2
-    );
-
-    for (let i = firstVisiblePage; i <= lastVisiblePage; i++) {
-      const page = paginationSection.querySelector(
-        '.pagination-btns li.page:nth-child(' + i + ')'
-      );
-      page.classList.toggle('is-hidden', !page.classList.contains('page'));
-    }
-
+    // Show the dots
     const dots = paginationSection.querySelector('.pagination-btns li.dots');
-    dots.classList.toggle(
-      'is-hidden',
-      !(
-        (currentPage > firstVisiblePage && currentPage < lastVisiblePage) ||
-        (currentPage === firstVisiblePage && firstVisiblePage > 1)
-      )
-    );
+    if (dots) {
+      dots.classList.toggle('is-hidden', false);
+    }
   }
 });
