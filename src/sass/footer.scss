@@ -1,3 +1,46 @@
 .footer-container {
-  background-color: rgb(12, 104, 184);
+  background-color: #f7f7f7;
+}
+.footer-paragraph {
+  color: #545454;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+
+  font-weight: 400;
+}
+.footer-svg {
+}
+.footer-close-button {
+  background-color: orange;
+}
+@media screen and (min-width: 769px) and (max-width: 1158px) {
+  .footer-section {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 420px) and (max-width: 768px) {
+  .footer-section {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .footer-container {
+    display: flex;
+    margin-left: 61px;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .footer-paragraph {
+    color: #545454;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 14px;
+
+    font-weight: 400;
+  }
 }
