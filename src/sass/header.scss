@@ -6,8 +6,8 @@
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.4) 65.37%
     ),
-    url(../images/abstract-background-with-red-lines\ 1.jpg) lightgray -108.957px -57.443px /
-      338.962% 116.387%;
+    url(../images/mobile.png.png) lightgray -108.957px -57.443px / 338.962%
+      116.387%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -19,6 +19,7 @@
   border-radius: 10px;
   overflow-x: hidden;
   position: relative;
+  background-size: 100%;
 }
 
 .form-buttons-div {
@@ -171,6 +172,7 @@
 //tablet
 @media only screen and (width >=768px) {
   .header-container {
+    background-size: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -180,8 +182,8 @@
         rgba(0, 0, 0, 0.49) -2.09%,
         rgba(0, 0, 0, 0) 99.83%
       ),
-      url(../images/filmoteka-background.jpg) lightgray -4.19px -124.143px /
-        119.345% 213.491% no-repeat;
+      url(../images/tablet.png.png) lightgray -4.19px -124.143px / 119.345%
+        213.491% no-repeat;
   }
   .icon-title-div {
     left: 0;
@@ -244,14 +246,14 @@
 //laptop
 @media only screen and (width >=1024px) {
   .header-container {
+    background-size: 100%;
     border-radius: 15px;
     background: linear-gradient(
         274deg,
         rgba(0, 0, 0, 0.49) -2.09%,
         rgba(0, 0, 0, 0) 99.83%
       ),
-      url(../images/background-desktop.png) lightgray 0px -194px / 100% 216.456%
-        no-repeat;
+      url(../images/desktop.png.png) lightgray 0px -194px / 100% 216.456% no-repeat;
   }
   .form-buttons-div {
     margin-top: 15px;
