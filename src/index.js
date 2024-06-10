@@ -52,3 +52,20 @@ headerQueuedButton.addEventListener('click', ev => {
     headerClearWatchedButton.classList.toggle('is-hidden');
   }
 });
+
+// HERO
+
+// Descris în documentație
+import SimpleLightbox from 'simplelightbox';
+// Import suplimentar de stil
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+import axios from 'axios';
+
+var _ = require('lodash');
+
+// PAGE-CHANGER
+
+// PAGE-UP
+
+// FOOTER

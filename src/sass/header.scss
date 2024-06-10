@@ -416,20 +416,21 @@ span {
 
 @media screen and (width >=1024px) {
   .header-container {
-    padding: 16px 32px 32px;
-
     height: 316px;
-
-    border-radius: 15px;
-
-    background: linear-gradient(
-        274deg,
-        rgba(0, 0, 0, 0.49) -2.09%,
-        rgba(0, 0, 0, 0) 99.83%
-      ),
-      lightgray 0px -194px / 100% 216.456% no-repeat;
+    background-color: #d3d3d3;
     background-image: url(../images/header-background-2x\(1\).png);
+<<<<<<< Updated upstream
     background-size: 100%;
+=======
+    background-position: 0 0, 0 -194px;
+    background-repeat: no-repeat;
+    /* background-size: auto, 100% 216.456%; */
+    background-attachment: scroll, scroll;
+    background-origin: padding-box, padding-box;
+    background-clip: border-box, border-box;
+    border-radius: 15px;
+    padding: 16px 32px 32px;
+>>>>>>> Stashed changes
   }
 
   .header-top {
