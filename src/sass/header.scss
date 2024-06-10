@@ -41,8 +41,8 @@
   flex-shrink: 1;
   width: 87px;
   height: 34px;
-  background-color: #000;
-  color: #fff;
+  background-color: white;
+  color: black;
   text-align: center;
   font-family: Roboto;
   font-size: 12px;
@@ -50,6 +50,17 @@
   font-weight: 500;
   line-height: normal;
   text-transform: uppercase;
+}
+
+.home-button:hover,
+.home-button:focus {
+  background-color: #000;
+  color: #fff;
+}
+.library-button:hover,
+.library-button:focus {
+  background-color: #000;
+  color: #fff;
 }
 
 .library-button {
