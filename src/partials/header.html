@@ -1,13 +1,22 @@
 <header class="header-container">
-  <div class="buttons-container">
-    <button type="button" class="home-button">HOME</button>
-    <button type="button" class="library-button">MY LIBRARY</button>
+  <div class="form-buttons-div">
+    <form class="search-form">
+      <input type="text" class="search-bar" placeholder="Movie Search" />
+      <button type="submit" class="search-button" aria-label="search">
+        <svg class="search-icon">
+          <use href="./images/icons.svg#icon-search"></use>
+        </svg>
+      </button>
+    </form>
+    <div class="buttons-container">
+      <button type="button" class="home-button">HOME</button>
+      <button type="button" class="library-button">MY LIBRARY</button>
+    </div>
   </div>
-  <form class="search-form">
-    <input type="text" class="search-bar" placeholder="Movie Search" />
-  </form>
-  <use>
-    <svg></svg>
-  </use>
-  <h1>Filmoteka</h1>
+  <div class="icon-title-div">
+    <svg class="logo-icon">
+      <use href="./images/icons.svg#icon-logo"></use>
+    </svg>
+    <h1 class="header-title">Filmoteka</h1>
+  </div>
 </header>
