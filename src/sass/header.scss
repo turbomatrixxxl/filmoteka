@@ -125,12 +125,11 @@
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  padding: 10px;
   color: white;
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 74px;
+  margin-bottom: 20px;
 }
 
 .logo-icon {
@@ -228,6 +227,12 @@
   gap: 8px;
   margin-bottom: 24px;
 }
+////////////////////////////////THEME BUTTON
+
+////////////////////////////////////////////
+.is-hidden {
+  visibility: hidden;
+}
 //tablet
 @media only screen and (width >=768px) {
   .header-container {
@@ -320,12 +325,12 @@
   }
   .watched-button {
     width: 102px;
-    height: 34px;
+    height: 38px;
   }
 
   .queue-button {
     width: 86px;
-    height: 34px;
+    height: 38px;
   }
 }
 
@@ -377,5 +382,17 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  }
+  .watched-queue-buttons {
+    margin-right: 32px;
+  }
+  .watched-button {
+    width: 120px;
+    height: 46px;
+  }
+
+  .queue-button {
+    width: 86px;
+    height: 46px;
   }
 }

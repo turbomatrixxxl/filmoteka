@@ -1,21 +1,36 @@
 //Scroll button
-window.onscroll = function () {
-  scrollFunction();
-};
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById('scrollToTopBtn').style.display = 'block';
-  } else {
-    document.getElementById('scrollToTopBtn').style.display = 'none';
-  }
-}
-
-function scrollToTop() {
-  const c = document.documentElement.scrollTop || document.body.scrollTop;
-  if (c > 0) {
-    window.requestAnimationFrame(scrollToTop);
-    window.scrollTo(0, c - c / 8);
-  }
-}
 ///////////////
+
+//Library button
+const libraryButton = document.querySelector('.library-button');
+const watchedButton = document.querySelector('.watched-button');
+const queueButton = document.querySelector('.queue-button');
+const iconTitle = document.querySelector('.icon-title-div');
+function isMobile() {
+  return window.innerWidth <= 767;
+}
+
+libraryButton.addEventListener('click', function (e) {
+  queueButton.classList.remove('is-hidden');
+  watchedButton.classList.remove('is-hidden');
+});
+function updateMargin() {
+  if (!isMobile()) {
+    //Reseteaza daca pagina are width mai mare de 767px
+    iconTitle.style.marginBottom = '16px';
+  }
+}
+libraryButton.addEventListener('click', function () {
+  // Check if the device is mobile
+  if (isMobile()) {
+    // Change the margin-bottom of the target element
+    iconTitle.style.marginBottom = '74px'; // New margin-bottom  for mobile
+  }
+});
+
+// Add a resize event listener to the window
+window.addEventListener('resize', updateMargin);
+
+// Initial check in case the page is loaded on a non-mobile screen
+updateMargin();

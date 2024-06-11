@@ -9,7 +9,10 @@
       </button>
     </form>
     <div class="buttons-container">
-      <button type="button" class="home-button">HOME</button>
+      <button onClick="window.location.reload();" class="home-button">
+        HOME
+      </button>
+      <!-- <button type="button" class="home-button">HOME</button> -->
       <button type="button" class="library-button">MY LIBRARY</button>
     </div>
   </div>
@@ -20,7 +23,7 @@
     <h1 class="header-title">Filmoteka</h1>
   </div>
   <div class="watched-queue-buttons">
-    <button type="button" class="watched-button">WATCHED</button>
-    <button type="button" class="queue-button">QUEUE</button>
+    <button type="button" class="watched-button is-hidden">WATCHED</button>
+    <button type="button" class="queue-button is-hidden">QUEUE</button>
   </div>
 </header>
