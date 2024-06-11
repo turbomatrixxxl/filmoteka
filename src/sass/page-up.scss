@@ -1,21 +1,34 @@
 // mobile first
-.page-up {
-  position: fixed;
-  right: 20px;
-  bottom: 30px;
-  opacity: 0.5;
+.scrollToTop {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  opacity: 80%;
+  fill: white;
 }
 
+.scrollToTop:focus,
+.scrollToTop:hover {
+  opacity: 100%;
+}
 // Media querries
 
 // tablet
-// @media screen and (width >=768px) {
-// }
+@media screen and (width >=768px) {
+  .scrollToTop {
+    width: 24px;
+    height: 24px;
+  }
+}
 
 // desktop
 @media screen and (width >=1024px) {
-  .page-up {
-    right: 30px;
-    bottom: 145;
+  .scrollToTop {
+    width: 32px;
+    height: 32px;
   }
 }
