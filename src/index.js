@@ -127,8 +127,8 @@ fetch(trendingMoviesUrl, options)
   .catch(err => console.error('error:' + err));
 
 function renderCards(params) {
-  const heroCardListItem = document.createElement('li');
-  heroCardListItem.setAttribute('class', 'film-li item');
+  const heroCardListItem = document.createElement('div');
+  heroCardListItem.setAttribute('class', 'movie-card item');
   heroCardListItem.setAttribute('data-movie-id', `${params.id}`);
   heroList.append(heroCardListItem);
 
