@@ -9,20 +9,28 @@
           <button class="header-library-button">My Library</button>
         </div>
       </div>
-      <form class="search-form" style="display: block">
-        <input
-          class="search-form-input"
-          name="query"
-          placeholder="Movie search"
-          aria-label="movie search"
-          autocomplete="off"
-        />
-        <button type="submit" class="search-form-button" aria-label="search">
-          <svg class="search-form-icon">
-            <use href="./images/icons.svg#icon-search"></use>
-          </svg>
-        </button>
-      </form>
+      <div class="hero-form-and-error-container">
+        <form class="search-form" style="display: block">
+          <input
+            class="search-form-input"
+            name="query"
+            placeholder="Movie search"
+            aria-label="movie search"
+            autocomplete="off"
+          />
+          <button type="submit" class="search-form-button" aria-label="search">
+            <svg class="search-form-icon">
+              <use href="./images/icons.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
+        <div class="error-container">
+          <p class="header__error">
+            Search result is not successful. Enter the correct movie name and
+            press enter
+          </p>
+        </div>
+      </div>
     </div>
     <div class="header-theme-switcher">
       <input type="checkbox" id="switch" class="checkbox" />

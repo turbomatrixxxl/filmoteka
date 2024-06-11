@@ -234,6 +234,27 @@ span {
   fill: var(--red);
 }
 
+.error-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__error {
+  display: none;
+  position: absolute;
+  top: 20px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+  color: palegoldenrod;
+}
+
 // Bottom line icon and title
 
 .header-bottom-icon-and-title {
@@ -387,6 +408,10 @@ span {
   .search-form {
     width: 165px;
     height: 38px;
+  }
+
+  .error-container {
+    max-width: none;
   }
 
   // Bottom line icon and title
