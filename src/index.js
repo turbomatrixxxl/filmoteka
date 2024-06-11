@@ -66,7 +66,7 @@ var _ = require('lodash');
 
 const fetch = require('node-fetch');
 
-const heroList = document.querySelector('.hero-list');
+const heroList = document.querySelector('.gallery');
 
 let page = 1;
 
@@ -114,7 +114,7 @@ fetch(trendingMoviesUrl, options)
         console.log(linkImage.src);
         console.log(link.href);
 
-        linkImage.src = link.href;
+        // linkImage.src = link.href;
 
         // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
         let gallery = new SimpleLightbox(`.gallery a`, {
@@ -144,7 +144,7 @@ function renderCards(params) {
   const img = document.createElement('img');
   img.setAttribute(
     'src',
-    `https://image.tmdb.org/t/p/w342/${params.backdrop_path}`
+    `https://image.tmdb.org/t/p/original/${params.backdrop_path}.jpg`
   );
   img.setAttribute('class', `hero-cards-image`);
   img.setAttribute('alt', `${params.media_type}`);
@@ -169,32 +169,64 @@ function renderCards(params) {
   const heroMovieGenresList = document.createElement('ul');
   heroMovieGenresList.setAttribute('class', 'hero-movie-genres-list');
 
-  heroCardDetails.append(heroMovieGenresList);
+  // heroCardDetails.append(heroMovieGenresList);
 
-  const movieGenres = params.genre_ids;
+  let movieGenres = params.genre_ids;
   // console.log(movieGenres);
 
-  movieGenres.forEach(element => {
-    // console.log(element);
-    const heroMovieGenresListItem = document.createElement('li');
-    heroMovieGenresListItem.setAttribute(
-      'class',
-      'hero-movie-genres-list-item'
-    );
+  if (movieGenres.length > 3) {
+    console.log(movieGenres.length);
+    movieGenres = movieGenres.slice(0, 2);
+    console.log(movieGenres);
+    movieGenres.forEach(element => {
+      // console.log(element);
+      const heroMovieGenresListItem = document.createElement('li');
+      heroMovieGenresListItem.setAttribute(
+        'class',
+        'hero-movie-genres-list-item'
+      );
 
-    fetch(genresApiUrl, options)
-      .then(res => res.json())
-      .then(res => {
-        const genresArray = res.genres.map(x => {
-          if (x.id === element) {
-            heroMovieGenresListItem.textContent = `${x.name},`;
-          }
-        });
-      })
-      .catch(err => console.error('error:' + err));
+      fetch(genresApiUrl, options)
+        .then(res => res.json())
+        .then(res => {
+          res.genres.map(x => {
+            if (x.id === element) {
+              heroMovieGenresListItem.textContent = `${x.name},`;
+            }
+          });
+        })
+        .catch(err => console.error('error:' + err));
 
-    heroMovieGenresList.append(heroMovieGenresListItem);
-  });
+      heroMovieGenresList.append(heroMovieGenresListItem);
+    });
+
+    const heroGenresOther = document.createElement('li');
+    heroGenresOther.setAttribute('class', 'hero-movie-genres-list-item');
+    heroGenresOther.textContent = 'Otherr';
+    heroMovieGenresList.append(heroGenresOther);
+  } else {
+    movieGenres.forEach(element => {
+      // console.log(element);
+      const heroMovieGenresListItem = document.createElement('li');
+      heroMovieGenresListItem.setAttribute(
+        'class',
+        'hero-movie-genres-list-item'
+      );
+
+      fetch(genresApiUrl, options)
+        .then(res => res.json())
+        .then(res => {
+          res.genres.map(x => {
+            if (x.id === element) {
+              heroMovieGenresListItem.textContent = `${x.name},`;
+            }
+          });
+        })
+        .catch(err => console.error('error:' + err));
+
+      heroMovieGenresList.append(heroMovieGenresListItem);
+    });
+  }
 
   setTimeout(heroCommaRemove, 2000);
 
@@ -211,39 +243,19 @@ function renderCards(params) {
   const yearCard = document.createElement('span');
   yearCard.setAttribute('class', 'hero-year-span');
   yearCard.textContent = `| ` + year;
-  heroCardDetails.append(yearCard);
+  // heroCardDetails.append(yearCard);
 
   // console.log(params.vote_count);
   const votes = document.createElement('span');
   votes.setAttribute('class', 'hero-votes-span');
-  votes.textContent = ` |  ` + params.vote_count;
-  heroCardDetails.append(votes);
+  votes.textContent = params.vote_average;
+  // heroCardDetails.append(votes);
 
-  // console.log(heroList);
+  const heroMovieDetailsContainer = document.createElement('div');
+  heroMovieDetailsContainer.setAttribute('class', 'hero-details-container');
+  heroCardDetails.append(heroMovieDetailsContainer);
+  heroMovieDetailsContainer.append(heroMovieGenresList, yearCard, votes);
 }
-
-const heroImagesLink = document.querySelectorAll('.hero-cards-link');
-console.log(heroImagesLink.length);
-
-heroImagesLink.forEach(link => {
-  const linkImage = document.querySelector('.hero-cards-image');
-  console.log(linkImage);
-
-  link.addEventListener('click', ev => {
-    ev.preventDefault();
-
-    console.log(linkImage.src);
-    console.log(link.href);
-
-    linkImage.src = link.href;
-
-    // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-    let gallery = new SimpleLightbox(`.gallery a`, {
-      // captionsData: 'alt',
-      // captionDelay: 250,
-    });
-  });
-});
 
 // PAGE-CHANGER
 
@@ -251,16 +263,16 @@ heroImagesLink.forEach(link => {
 const pageUp = document.querySelector('.page-up');
 // const scrollTo = document.querySelector('#scroll-to');
 
-window.addEventListener('scroll', () => {
-  const scrolledTo = window.scrollY + window.innerHeight;
+// window.addEventListener('scroll', () => {
+//   const scrolledTo = window.scrollY + window.innerHeight;
 
-  // const isReachBottom = body.scrollHeight <= scrolledTo;
-  if (window.scrollY < scrolledTo / 3) {
-    pageUp.classList.add('is-hidden');
-  }
-  if (window.scrollY >= scrolledTo / 3) {
-    pageUp.classList.toggle('is-hidden');
-  }
-});
+//   // const isReachBottom = body.scrollHeight <= scrolledTo;
+//   if (window.scrollY < scrolledTo / 3) {
+//     pageUp.classList.add('is-hidden');
+//   }
+//   if (window.scrollY >= scrolledTo / 3) {
+//     pageUp.classList.toggle('is-hidden');
+//   }
+// });
 
 // FOOTER

@@ -419,10 +419,10 @@ span {
     height: 316px;
     background-color: #d3d3d3;
     background-image: url(../images/header-background-2x\(1\).png);
-    background-size: 100%;
     background-position: 0 0, 0 -194px;
     background-repeat: no-repeat;
     /* background-size: auto, 100% 216.456%; */
+    background-size: 100vw 100vh;
     background-attachment: scroll, scroll;
     background-origin: padding-box, padding-box;
     background-clip: border-box, border-box;
