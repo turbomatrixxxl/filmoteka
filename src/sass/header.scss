@@ -1,13 +1,14 @@
 //mobile
 
 .header-container {
+  background-size: cover;
+  background-position: center;
   background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.4) 65.37%
     ),
-    url(../images/mobile.png.png) lightgray -108.957px -57.443px / 338.962%
-      116.387%;
+    url(../images/mobile.png) lightgray -108.957px -57.443px / 338.962% 116.387%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -19,7 +20,7 @@
   border-radius: 10px;
   overflow-x: hidden;
   position: relative;
-  background-size: 100%;
+  // background-size: 100%;
 }
 
 .form-buttons-div {
@@ -96,9 +97,9 @@
 }
 
 .search-bar {
+  width: 100%;
   display: flex;
   align-items: center;
-  width: 100%;
   max-width: 100%;
   border-radius: 100px;
   background: #fff;
@@ -129,6 +130,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 74px;
 }
 
 .logo-icon {
@@ -169,10 +171,68 @@
   fill: var(--white);
 }
 
+.watched-button {
+  background-color: white;
+  border-radius: 100px;
+  border-style: none;
+  flex-shrink: 1;
+  width: 102px;
+  height: 34px;
+  color: #b92f2c;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.queue-button {
+  background-color: white;
+  border-radius: 100px;
+  border-style: none;
+  flex-shrink: 1;
+  width: 86px;
+  height: 34px;
+  color: #b92f2c;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.queue-button:hover,
+.queue-button:focus {
+  background-color: #b92f2c;
+  color: #fff;
+}
+.watched-button:hover,
+.watched-button:focus {
+  background-color: #b92f2c;
+  color: #fff;
+}
+.watched-queue-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
 //tablet
 @media only screen and (width >=768px) {
   .header-container {
-    background-size: 100%;
+    background-size: 100vh, 100vw;
+    // background-size: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -182,8 +242,8 @@
         rgba(0, 0, 0, 0.49) -2.09%,
         rgba(0, 0, 0, 0) 99.83%
       ),
-      url(../images/tablet.png.png) lightgray -4.19px -124.143px / 119.345%
-        213.491% no-repeat;
+      url(../images/tablet.png) lightgray -4.19px -124.143px / 119.345% 213.491%
+        no-repeat;
   }
   .icon-title-div {
     left: 0;
@@ -209,14 +269,17 @@
   }
 
   .form-buttons-div {
+    top: 0;
+    position: absolute;
     display: flex;
     gap: 4px;
     margin-left: 16px;
+    margin-top: 16px;
   }
 
   .search-form {
     position: relative;
-    top: -200px;
+    top: 0;
     width: 165px;
     height: 38px;
     left: 0px;
@@ -228,7 +291,6 @@
   .buttons-container {
     margin-top: 0px;
     position: relative;
-    top: -200px;
     margin-left: 0px;
   }
 
@@ -241,19 +303,44 @@
     width: 83px;
     height: 38px;
   }
+  .watched-queue-buttons {
+    right: 0;
+    position: absolute;
+    top: 0;
+    left: auto;
+    display: flex;
+    padding: 0;
+    color: white;
+    display: flex;
+    gap: 8px;
+    bottom: auto;
+    transform: translateX(0);
+    margin-top: 16px;
+    margin-right: 16px;
+  }
+  .watched-button {
+    width: 102px;
+    height: 34px;
+  }
+
+  .queue-button {
+    width: 86px;
+    height: 34px;
+  }
 }
 
 //laptop
 @media only screen and (width >=1024px) {
   .header-container {
-    background-size: 100%;
+    background-size: 100vh, 100vw;
+    // background-size: 100%;
     border-radius: 15px;
     background: linear-gradient(
         274deg,
         rgba(0, 0, 0, 0.49) -2.09%,
         rgba(0, 0, 0, 0) 99.83%
       ),
-      url(../images/desktop.png.png) lightgray 0px -194px / 100% 216.456% no-repeat;
+      url(../images/desktop.png) lightgray 0px -194px / 100% 216.456% no-repeat;
   }
   .form-buttons-div {
     margin-top: 15px;
