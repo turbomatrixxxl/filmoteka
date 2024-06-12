@@ -88,36 +88,6 @@
   padding: 1px;
 }
 
-// Lightbox modal
-
-// div container principal si central(imagine+captions)
-.sl-wrapper .sl-image {
-  -ms-touch-action: none;
-  touch-action: none;
-  z-index: 10000;
-  position: fixed;
-
-  // stil in element
-  top: 30.35px;
-  left: 94.9px;
-  width: 100px;
-  height: 546.3px;
-  transform: translateX(0px);
-  transition: transform 0.25s linear 0s;
-  opacity: 1;
-  display: none;
-}
-
-// imaginea
-.sl-image img {
-  width: 50%;
-  height: auto;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-
 @media screen and (width >=768px) {
   .gallery {
     gap: 32px;

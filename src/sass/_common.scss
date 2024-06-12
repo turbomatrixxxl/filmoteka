@@ -95,14 +95,51 @@ body {
   margin-top: 40px;
 }
 
+// Hero modal window
+
 .modal-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px 136px;
   position: absolute;
   z-index: 1000;
-  background-color: var(--light-gray);
+  background-color: var(--middle-gray);
   width: 100%;
-  height: 100%;
+  height: 100vh;
   top: 0;
   left: 0;
+}
+
+.hero-modal-card-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 20px 40px;
+  background-color: var(--white);
+  width: 100%;
+  height: 100%;
+}
+
+.hero-modal-close-button {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background-color: transparent;
+}
+
+.hero-modal-close-icon {
+  stroke-width: 3px;
+  stroke: #000;
+  fill: #000;
 }
 
 // Media querries
@@ -122,6 +159,14 @@ body {
     height: 79px;
     margin-top: 60px;
   }
+
+  .modal-window {
+    padding: 250px 32px 244px;
+  }
+
+  .hero-modal-card-container {
+    padding: 36px 40px 72px 64px;
+  }
 }
 
 // desktop
@@ -132,5 +177,13 @@ body {
 
   .footer-container {
     height: 77px;
+  }
+
+  .modal-window {
+    padding: 250px 237px 238px;
+  }
+
+  .hero-modal-card-container {
+    padding: 40px 12px;
   }
 }

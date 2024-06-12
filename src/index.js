@@ -234,6 +234,13 @@ fetch(trendingMoviesUrl, options)
       link.addEventListener('click', ev => {
         ev.preventDefault();
 
+        console.log(ev.target);
+        console.log(ev.currentTarget);
+
+        const heroModalCardContainer = document.createElement('div');
+
+        modalWindow.classList.toggle('is-hidden');
+
         // console.log(linkImage.src);
         // console.log(link.href);
 
@@ -433,7 +440,7 @@ function scrollFunction() {
     document.documentElement.scrollTop > 100
   ) {
     // console.log(document.body.scrollTop);
-    console.log(document.documentElement.scrollTop);
+    // console.log(document.documentElement.scrollTop);
     // console.log(document.documentElement);
     pageUp.style.display = 'flex';
   } else {
