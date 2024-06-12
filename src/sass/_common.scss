@@ -110,12 +110,12 @@ body {
   width: 100%;
   height: 100%;
 
-  // overflow-y: scroll;
+  overflow-y: scroll;
   opacity: 1;
   pointer-events: all;
 }
 
-.hero-modal-card-container {
+.modal-card-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -124,11 +124,11 @@ body {
   width: 100%;
   height: 100%;
   // flex-shrink: 0;
-  border: 1px solid black;
+  // border: 1px solid black;
 
   z-index: 1001;
   // transform: scale(1.25);
-  // overflow-y: scroll;
+  overflow-y: scroll;
   // transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -136,7 +136,7 @@ body {
 //   transform: scale(1);
 // }
 
-.hero-modal-close-button {
+.modal-close-button {
   z-index: 1002;
 
   cursor: pointer;
@@ -153,12 +153,11 @@ body {
   background-color: transparent;
 }
 
-.hero-modal-close-icon {
+.modal-close-icon {
   position: relative;
   z-index: 1002;
   stroke-width: 3px;
-  stroke: #000;
-  fill: #000;
+  stroke: var(--black);
 }
 
 // Media querries
@@ -183,10 +182,10 @@ body {
   //   padding: 250px 32px 244px;
   // }
 
-  .hero-modal-card-container {
+  .modal-card-container {
     padding: 36px 40px 72px 64px;
-    // max-width: 704px;
-    // height: 552px;
+    min-width: 618px;
+    max-height: 562px;
   }
 }
 
@@ -204,9 +203,9 @@ body {
   //   padding: 250px 237px 238px;
   // }
 
-  .hero-modal-card-container {
+  .modal-card-container {
     padding: 40px 12px;
-    // max-width: 806px;
-    // height: 558px;
+    min-width: 882px;
+    max-height: 562px;
   }
 }

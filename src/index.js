@@ -196,7 +196,6 @@ headerQueuedButton.addEventListener('click', ev => {
 });
 
 // HERO
-
 // const url =
 //   `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`;
 
@@ -212,9 +211,12 @@ headerQueuedButton.addEventListener('click', ev => {
 //   },
 // };
 
+const modalImage = document.querySelector('.modal-img');
+console.log(modalImage.getAttribute('src'));
+
 // const url = 'https://api.themoviedb.org/3/keyword/keyword_id';
-const heroModalCloseBtn = document.querySelector('.hero-modal-close-button');
-heroModalCloseBtn.addEventListener('click', () => {
+const modalCloseBtn = document.querySelector('.modal-close-button');
+modalCloseBtn.addEventListener('click', () => {
   modalWindow.classList.toggle('is-hidden');
 });
 
@@ -222,7 +224,7 @@ fetch(trendingMoviesUrl, options)
   .then(res => res.json())
   .then(res => {
     // console.log(res);
-    // console.log(res.results);
+    console.log(res.results);
     const movies = res.results;
     movies.map(element => {
       renderCards(element);
@@ -238,8 +240,43 @@ fetch(trendingMoviesUrl, options)
       link.addEventListener('click', ev => {
         ev.preventDefault();
 
-        console.log(ev.target);
-        console.log(ev.currentTarget);
+        // console.log(ev.target);
+        const currentLink = ev.currentTarget;
+        console.log(currentLink);
+
+        const linkSrc = currentLink.href;
+        console.log(linkSrc);
+
+        const linkVote = currentLink.getAttribute('vote');
+        console.log(linkVote);
+
+        const linkVotes = currentLink.getAttribute('votes');
+        console.log(linkVotes);
+
+        const linkPopurarity = currentLink.getAttribute('popularity');
+        console.log(linkPopurarity);
+
+        const linkOrigTitle = currentLink.getAttribute('original_title');
+        console.log(linkOrigTitle);
+
+        const linkDescription = currentLink.getAttribute('description');
+        console.log(linkDescription);
+
+        // movieGenres.forEach(el => {
+        //   let genres = heroLink.getAttribute(genres);
+        //   fetch(genresApiUrl, options)
+        //     .then(res => res.json())
+        //     .then(res => {
+        //       res.genres.map(x => {
+        //         if (x.id === el) {
+        //           genres.setAttribute('genres', (genres += `${x.name} `));
+        //         }
+        //       });
+        //     })
+        //     .catch(err => console.error('error:' + err));
+        // });
+
+        modalImage.setAttribute('src', linkSrc);
 
         // const heroModalCardContainer = document.createElement('div');
 
@@ -288,7 +325,14 @@ function renderCards(params) {
       `https://image.tmdb.org/t/p/original/${params.poster_path}`
     );
   }
+
+  heroLink.setAttribute('genres', ``);
   heroLink.setAttribute('class', `hero-cards-link`);
+  heroLink.setAttribute('vote', `${params.vote_average}`);
+  heroLink.setAttribute('votes', `${params.vote_count}`);
+  heroLink.setAttribute('popularity', `${params.popularity}`);
+  heroLink.setAttribute('original_title', `${params.original_title}`);
+  heroLink.setAttribute('description', `${params.overview}`);
 
   heroCardListItem.append(heroLink);
 
@@ -307,7 +351,6 @@ function renderCards(params) {
   }
   img.setAttribute('class', `hero-cards-image`);
   img.setAttribute('alt', `${params.media_type}`);
-  img.setAttribute('loading', `lazy`);
   img.setAttribute('loading', `lazy`);
   // console.log(img);
 
