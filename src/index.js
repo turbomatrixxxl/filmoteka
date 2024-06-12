@@ -42,14 +42,11 @@ function updateMargin() {
   }
 }
 headerLibraryButton.addEventListener('click', function () {
-  // Check if the device is mobile
   if (isMobile()) {
-    // Change the margin-bottom of the target element
-    headerIconTitle.style.marginBottom = '74px'; // New margin-bottom  for mobile
+    headerIconTitle.style.marginBottom = '74px';
   }
 });
 
-// Add a resize event listener to the window
 window.addEventListener('resize', updateMargin);
 
 updateMargin();

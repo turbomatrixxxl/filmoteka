@@ -1,27 +1,23 @@
 //mobile
 
 .header-container {
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 10px;
-  background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.4) 65.37%
-    ),
-    url(../images/mobile.png) lightgray -108.957px -57.443px / 338.962% 116.387%
-      no-repeat;
+  position: relative;
+  overflow-x: hidden;
   height: 460px;
   display: flex;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
   border-radius: 10px;
-  overflow-x: hidden;
-  position: relative;
-  background-size: 100%;
+  background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.4) 65.37%
+    ),
+    url(../images/mobile.png) lightgray -108.957px -57.443px / 338.962% 116.387%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .form-buttons-div {
