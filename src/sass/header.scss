@@ -1,17 +1,18 @@
 //mobile
 
 .header-container {
+  background-attachment: fixed;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
   background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.4) 65.37%
     ),
-    url(../images/mobile.png) lightgray -108.957px -57.443px / 338.962% 116.387%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+    url(../images/mobile.png) lightgray -108.957px -57.443px / 338.962% 116.387%
+      no-repeat;
   height: 460px;
   display: flex;
   margin-top: 20px;
@@ -20,7 +21,7 @@
   border-radius: 10px;
   overflow-x: hidden;
   position: relative;
-  // background-size: 100%;
+  background-size: 100%;
 }
 
 .form-buttons-div {
@@ -235,8 +236,7 @@
 //tablet
 @media only screen and (width >=768px) {
   .header-container {
-    background-size: 100vh, 100vw;
-    // background-size: 100%;
+    background-size: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -248,6 +248,7 @@
       ),
       url(../images/tablet.png) lightgray -4.19px -124.143px / 119.345% 213.491%
         no-repeat;
+    height: 222px;
   }
   .icon-title-div {
     left: 0;
@@ -333,11 +334,10 @@
   }
 }
 
-//laptop
+//desktop
 @media only screen and (width >=1024px) {
   .header-container {
-    background-size: 100vh, 100vw;
-    // background-size: 100%;
+    background-size: 100%;
     border-radius: 15px;
     background: linear-gradient(
         274deg,
@@ -345,6 +345,7 @@
         rgba(0, 0, 0, 0) 99.83%
       ),
       url(../images/desktop.png) lightgray 0px -194px / 100% 216.456% no-repeat;
+    height: 316px;
   }
   .form-buttons-div {
     margin-top: 15px;
