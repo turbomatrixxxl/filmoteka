@@ -428,9 +428,12 @@ window.onscroll = function () {
   scrollFunction();
 };
 function scrollFunction() {
-  if (document.documentElement.scrollTop > 100) {
+  if (
+    document.body.scrollTop > 100 ||
+    document.documentElement.scrollTop > 100
+  ) {
     // console.log(document.body.scrollTop);
-    // console.log(document.documentElement.scrollTop);
+    console.log(document.documentElement.scrollTop);
     // console.log(document.documentElement);
     pageUp.style.display = 'flex';
   } else {
@@ -439,7 +442,7 @@ function scrollFunction() {
 }
 
 // When the user clicks on the button, scroll to the top of the document
-pageUp.addEventListener('click', ev => {
+pageUp.addEventListener('click', () => {
   document.documentElement.scrollTop = 0;
 });
 

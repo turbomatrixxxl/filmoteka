@@ -12,11 +12,13 @@
   background-color: transparent;
   border: none;
   border-radius: 50%;
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     scale 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page-up:hover {
+  opacity: 100%;
   background-color: var(--red);
   transform: scale(1.2);
 }
@@ -25,28 +27,6 @@
   cursor: pointer;
   fill: var(--red);
   display: inline-block;
-}
-
-/* ==========================================
-Single-colored icons can be modified like so:
-.icon-name {
-  font-size: 32px;
-  color: red;
-}
-========================================== */
-
-// Media querries
-
-// tablet
-// @media screen and (width >=768px) {
-// }
-
-// desktop
-@media screen and (width >=1024px) {
-  .page-up {
-    right: 30px;
-    bottom: 145;
-  }
 }
 
 // Media querries
