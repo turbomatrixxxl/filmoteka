@@ -11,8 +11,7 @@
   fill: white;
 }
 
-.scrollToTop:focus,
-.scrollToTop:hover {
+.scrollToTop:focus {
   opacity: 100%;
 }
 // Media querries
@@ -23,6 +22,9 @@
     width: 24px;
     height: 24px;
   }
+  .scrollToTop:focus {
+    opacity: 100%;
+  }
 }
 
 // desktop
@@ -30,5 +32,8 @@
   .scrollToTop {
     width: 32px;
     height: 32px;
+  }
+  .scrollToTop:hover {
+    opacity: 100%;
   }
 }
