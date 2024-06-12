@@ -234,6 +234,7 @@ span {
   fill: var(--red);
 }
 
+// Error message container
 .error-container {
   position: relative;
   display: flex;
@@ -244,6 +245,7 @@ span {
 .header__error {
   display: none;
   position: absolute;
+  border: none;
   top: 20px;
   font-family: Roboto, sans-serif;
   font-style: normal;
@@ -252,7 +254,8 @@ span {
   line-height: 1.14;
   letter-spacing: normal;
   text-align: left;
-  color: palegoldenrod;
+  color: darkred;
+  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
 }
 
 // Bottom line icon and title

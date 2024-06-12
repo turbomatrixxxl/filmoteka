@@ -16,6 +16,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.movie-card:hover,
+.movie-card:focus {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
 .hero-cards-link {
@@ -78,6 +86,36 @@
   height: 16px;
   // background-color: #ff6b01;
   padding: 1px;
+}
+
+// Lightbox modal
+
+// div container principal si central(imagine+captions)
+.sl-wrapper .sl-image {
+  -ms-touch-action: none;
+  touch-action: none;
+  z-index: 10000;
+  position: fixed;
+
+  // stil in element
+  top: 30.35px;
+  left: 94.9px;
+  width: 100px;
+  height: 546.3px;
+  transform: translateX(0px);
+  transition: transform 0.25s linear 0s;
+  opacity: 1;
+  display: none;
+}
+
+// imaginea
+.sl-image img {
+  width: 50%;
+  height: auto;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 
 @media screen and (width >=768px) {

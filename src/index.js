@@ -43,9 +43,15 @@ let searchText = null;
 const headerSearchBtn = document.querySelector('.search-form-button');
 // console.log(headerSearchBtn);
 
+const headerFormErrorMessage = document.querySelector('.header__error');
+
 let page = 1;
 
 const heroList = document.querySelector('.gallery');
+
+const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${page}`;
+
+const genresApiUrl = `https://api.themoviedb.org/3/genre/movie/list?language=en&page=${page}`;
 
 const options = {
   method: 'GET',
@@ -89,10 +95,10 @@ headerSearchBtn.addEventListener('click', ev => {
   // }
 
   searchText = headerInput.value.replace(/ /g, '%20');
-  console.log(searchText);
+  // console.log(searchText);
 
   let findUrl = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=en-US&page=${page}`;
-  console.log(findUrl);
+  // console.log(findUrl);
 
   heroList.innerHTML = null;
 
@@ -103,6 +109,47 @@ headerSearchBtn.addEventListener('click', ev => {
       console.log(res);
       console.log(res.results);
       const movies = res.results;
+      if (movies.length === 0) {
+        headerFormErrorMessage.style.display = 'block';
+
+        fetch(trendingMoviesUrl, options)
+          .then(res => res.json())
+          .then(res => {
+            // console.log(res);
+            // console.log(res.results);
+            const movies = res.results;
+            movies.map(element => {
+              renderCards(element);
+            });
+
+            const heroImagesLink =
+              document.querySelectorAll('.hero-cards-link');
+            // console.log(heroImagesLink);
+
+            heroImagesLink.forEach(link => {
+              const linkImage = link.querySelector('.hero-cards-image');
+              // console.log(linkImage);
+
+              link.addEventListener('click', ev => {
+                ev.preventDefault();
+
+                // console.log(linkImage.src);
+                // console.log(link.href);
+
+                // linkImage.src = link.href;
+
+                // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
+                let gallery = new SimpleLightbox(`.gallery a`, {
+                  captionsData: 'alt',
+                  captionDelay: 250,
+                });
+              });
+            });
+          })
+          .catch(err => console.error('error:' + err));
+      } else {
+        headerFormErrorMessage.style.display = 'none';
+      }
 
       movies.map(element => {
         renderCards(element);
@@ -174,8 +221,6 @@ headerQueuedButton.addEventListener('click', ev => {
 // const url =
 //   `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
 
-const genresApiUrl = `https://api.themoviedb.org/3/genre/movie/list?language=en&page=${page}`;
-
 // const options = {
 //   method: 'GET',
 //   headers: {
@@ -186,8 +231,6 @@ const genresApiUrl = `https://api.themoviedb.org/3/genre/movie/list?language=en&
 // };
 
 // const url = 'https://api.themoviedb.org/3/keyword/keyword_id';
-
-const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${page}`;
 
 fetch(trendingMoviesUrl, options)
   .then(res => res.json())
@@ -216,9 +259,15 @@ fetch(trendingMoviesUrl, options)
 
         // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
         let gallery = new SimpleLightbox(`.gallery a`, {
-          captionsData: 'alt',
+          captionsData: 'src',
           captionDelay: 250,
+          captionPosition: 'outside',
+          alertError: false,
+          captionHTML: false,
         });
+        console.dir(gallery);
+        console.log(gallery.elements);
+        console.log(gallery.options);
       });
     });
   })
@@ -234,8 +283,9 @@ function renderCards(params) {
   if (params.backdrop_path === null) {
     heroLink.setAttribute(
       'src',
-      'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg'
+      './https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg'
     );
+    // heroLink.style.backgroundColor = 'gray';
   } else {
     heroLink.setAttribute(
       'href',
@@ -252,6 +302,7 @@ function renderCards(params) {
       'src',
       'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg'
     );
+    // heroLink.style.backgroundColor = 'gray';
   } else {
     img.setAttribute(
       'src',
@@ -376,6 +427,15 @@ function renderCards(params) {
   heroCardDetails.append(heroMovieDetailsContainer);
   heroMovieDetailsContainer.append(heroMovieGenresList, yearCard, votes);
 }
+
+// // Lightbox modal
+
+// // div container central
+// const heroModalCentralContainer = document.querySelector('.sl-image');
+// console.log(heroModalCentralContainer);
+
+// const heroModalImg = heroModalCentralContainer.querySelector('img');
+// console.log(heroModalImg);
 
 // PAGE-CHANGER
 
