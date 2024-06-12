@@ -213,6 +213,10 @@ headerQueuedButton.addEventListener('click', ev => {
 // };
 
 // const url = 'https://api.themoviedb.org/3/keyword/keyword_id';
+const heroModalCloseBtn = document.querySelector('.hero-modal-close-button');
+heroModalCloseBtn.addEventListener('click', () => {
+  modalWindow.classList.toggle('is-hidden');
+});
 
 fetch(trendingMoviesUrl, options)
   .then(res => res.json())
@@ -237,9 +241,12 @@ fetch(trendingMoviesUrl, options)
         console.log(ev.target);
         console.log(ev.currentTarget);
 
-        const heroModalCardContainer = document.createElement('div');
+        // const heroModalCardContainer = document.createElement('div');
 
         modalWindow.classList.toggle('is-hidden');
+        // heroModalCloseBtn.addEventListener('click', () => {
+        //   heroModalCardContainer.classList.toggle('is-hidden');
+        // });
 
         // console.log(linkImage.src);
         // console.log(link.href);
