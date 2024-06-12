@@ -78,6 +78,7 @@ img {
 .footer-section {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .footer-card-content {
   margin-top: 5px;
@@ -139,57 +140,6 @@ img {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-@media screen and (min-width: 769px) and (max-width: 2500px) {
-  .footer-section {
-    display: flex;
-    flex-direction: row;
-  }
-  .modal-background {
-    max-width: 500px;
-    padding-left: 2px;
-  }
-  .footer-modal-position {
-    font-size: 14px;
-  }
-  .footer-modal-heading {
-    font-size: 16px;
-  }
-}
-
-@media screen and (min-width: 420px) and (max-width: 768px) {
-  .footer-section {
-    display: flex;
-    flex-direction: row;
-  }
-  .modal-background {
-    height: auto;
-    width: max-content;
-    padding-left: 0;
-  }
-  .footer-modal-position {
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.12;
-    letter-spacing: normal;
-    color: #ff6b08;
-    padding-left: 10px;
-    padding-top: 4px;
-  }
-  .footer-modal-heading {
-    font-family: Roboto, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.14;
-    letter-spacing: normal;
-    color: #8c8c8c;
-    margin: 0;
-    padding-left: 10px;
-  }
-}
-
 @media screen and (max-width: 428px) {
   .form-title {
     font-family: Roboto, sans-serif;
@@ -204,7 +154,6 @@ img {
   }
   .footer-container {
     display: flex;
-    margin-left: 61px;
     flex-wrap: wrap;
     flex-direction: row;
   }
@@ -245,5 +194,57 @@ img {
   }
   .modal-background {
     width: max-content;
+  }
+}
+@media screen and (min-width: 420px) and (max-width: 768px) {
+  .footer-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .modal-background {
+    height: auto;
+    width: max-content;
+    padding-left: 0;
+  }
+  .footer-modal-position {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.12;
+    letter-spacing: normal;
+    color: #ff6b08;
+    padding-left: 10px;
+    padding-top: 4px;
+  }
+  .footer-modal-heading {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.14;
+    letter-spacing: normal;
+    color: #8c8c8c;
+    margin: 0;
+    padding-left: 10px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 2500px) {
+  .footer-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .modal-background {
+    max-width: 500px;
+    padding-left: 2px;
+  }
+  .footer-modal-position {
+    font-size: 14px;
+  }
+  .footer-modal-heading {
+    font-size: 16px;
   }
 }
