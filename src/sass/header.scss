@@ -16,7 +16,7 @@
     ),
     url(../images/mobile.png) lightgray -108.957px -57.443px / 338.962% 116.387%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100vw 100vh;
   background-position: center;
 }
 
@@ -232,7 +232,7 @@
 //tablet
 @media only screen and (width >=768px) {
   .header-container {
-    background-size: 100%;
+    background-size: 100vw 100vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -242,8 +242,8 @@
         rgba(0, 0, 0, 0.49) -2.09%,
         rgba(0, 0, 0, 0) 99.83%
       ),
-      url(../images/tablet.png) lightgray -4.19px -124.143px / 119.345% 213.491%
-        no-repeat;
+      url(../images/backgroundimg.png) lightgray -4.19px -124.143px / 119.345%
+        213.491% no-repeat;
     height: 222px;
   }
   .icon-title-div {
@@ -337,14 +337,14 @@
 //desktop
 @media only screen and (width >=1024px) {
   .header-container {
-    background-size: 100%;
+    background-size: 100vw 100vh;
     border-radius: 15px;
     background: linear-gradient(
         274deg,
         rgba(0, 0, 0, 0.49) -2.09%,
         rgba(0, 0, 0, 0) 99.83%
       ),
-      url(../images/desktop.png) lightgray 0px -194px / 100% 216.456% no-repeat;
+      url(../images/backgroundimg.png) lightgray 0px -194px / 100% 216.456% no-repeat;
     height: 316px;
   }
   .form-buttons-div {
