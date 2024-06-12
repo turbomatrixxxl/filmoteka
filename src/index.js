@@ -45,6 +45,9 @@ const headerSearchBtn = document.querySelector('.search-form-button');
 
 const headerFormErrorMessage = document.querySelector('.header__error');
 
+const modalWindow = document.querySelector('.modal-window');
+console.log(modalWindow);
+
 let page = 1;
 
 const heroList = document.querySelector('.gallery');
@@ -62,21 +65,6 @@ const options = {
   },
 };
 
-// let findUrl = `https://api.themoviedb.org/3/search/movie?include_adult=true&language=en-US&page=${page}`;
-
-// const searchOptions = {
-//   query: searchText,
-//   method: 'GET',
-//   headers: {
-//     accept: 'application/json',
-//     Authorization:
-//       'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MDA4MGZmMTg0Y2FiZWJkZjFiNDJlYWE4OGZiNTczOCIsInN1YiI6IjY2NjAyNTUwN2MwMjgyZWYzMDRmNjAxOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-GiosJEhvb8JZPRVsDWYKnyMuBuXM_jJXaHMa3NkslY',
-//   },
-// };
-
-// const url =
-//   'https://api.themoviedb.org/3/search/movie?query=cat%20and%20dog&include_adult=false&language=en-US&page=1';
-
 headerSearchBtn.addEventListener('click', ev => {
   ev.preventDefault();
 
@@ -87,12 +75,6 @@ headerSearchBtn.addEventListener('click', ev => {
     headerSearchBtn.disabled = false;
     console.log('change');
   });
-
-  // if ((headerInput.value = [])) {
-  //   headerSearchBtn.disabled = false;
-  //   console.log('null');
-  //   return;
-  // }
 
   searchText = headerInput.value.replace(/ /g, '%20');
   // console.log(searchText);
@@ -105,7 +87,7 @@ headerSearchBtn.addEventListener('click', ev => {
   fetch(findUrl, options)
     .then(res => res.json())
     .then(res => {
-      console.log(findUrl);
+      // console.log(findUrl);
       console.log(res);
       console.log(res.results);
       const movies = res.results;
@@ -139,10 +121,10 @@ headerSearchBtn.addEventListener('click', ev => {
                 // linkImage.src = link.href;
 
                 // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-                let gallery = new SimpleLightbox(`.gallery a`, {
-                  captionsData: 'alt',
-                  captionDelay: 250,
-                });
+                // let gallery = new SimpleLightbox(`.gallery a`, {
+                //   captionsData: 'alt',
+                //   captionDelay: 250,
+                // });
               });
             });
           })
@@ -258,16 +240,16 @@ fetch(trendingMoviesUrl, options)
         // linkImage.src = link.href;
 
         // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-        let gallery = new SimpleLightbox(`.gallery a`, {
-          captionsData: 'src',
-          captionDelay: 250,
-          captionPosition: 'outside',
-          alertError: false,
-          captionHTML: false,
-        });
-        console.dir(gallery);
-        console.log(gallery.elements);
-        console.log(gallery.options);
+        // let gallery = new SimpleLightbox(`.gallery a`, {
+        //   captionsData: 'src',
+        //   captionDelay: 250,
+        //   captionPosition: 'outside',
+        //   alertError: false,
+        //   captionHTML: false,
+        // });
+        // console.dir(gallery);
+        // console.log(gallery.elements);
+        // console.log(gallery.options);
       });
     });
   })
@@ -441,18 +423,24 @@ function renderCards(params) {
 
 // PAGE-UP
 const pageUp = document.querySelector('.page-up');
-// const scrollTo = document.querySelector('#scroll-to');
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+  scrollFunction();
+};
+function scrollFunction() {
+  if (document.documentElement.scrollTop > 100) {
+    // console.log(document.body.scrollTop);
+    // console.log(document.documentElement.scrollTop);
+    // console.log(document.documentElement);
+    pageUp.style.display = 'flex';
+  } else {
+    pageUp.style.display = 'none';
+  }
+}
 
-// window.addEventListener('scroll', () => {
-//   const scrolledTo = window.scrollY + window.innerHeight;
-
-//   // const isReachBottom = body.scrollHeight <= scrolledTo;
-//   if (window.scrollY < scrolledTo / 3) {
-//     pageUp.classList.add('is-hidden');
-//   }
-//   if (window.scrollY >= scrolledTo / 3) {
-//     pageUp.classList.toggle('is-hidden');
-//   }
-// });
+// When the user clicks on the button, scroll to the top of the document
+pageUp.addEventListener('click', ev => {
+  document.documentElement.scrollTop = 0;
+});
 
 // FOOTER
