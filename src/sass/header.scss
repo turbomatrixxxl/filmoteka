@@ -25,6 +25,7 @@
 }
 
 .buttons-container {
+  margin-right: 14px;
   display: flex;
   align-items: flex-start;
   gap: 4px;
@@ -89,15 +90,13 @@
   position: absolute;
   top: 60px;
   left: 14px;
-  width: 252px;
-  max-width: 100%;
 }
 
 .search-bar {
   width: 100%;
+  margin-right: 14px;
   display: flex;
   align-items: center;
-  max-width: 100%;
   border-radius: 100px;
   background: #fff;
   height: 34px;
@@ -154,12 +153,13 @@
   cursor: pointer;
   border-radius: 50%;
   outline: none;
-  top: 10px;
-  right: 14px;
+  top: 3px;
+  right: 30px;
   transition: scale 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .search-icon {
+  position: absolute;
   stroke-width: 3px;
   height: 14px;
   width: 14px;
@@ -281,13 +281,13 @@
   .search-form {
     position: relative;
     top: 0;
-    width: 165px;
     height: 38px;
     left: 0px;
   }
 
   .search-bar {
     height: 38px;
+    margin-right: 5px;
   }
   .buttons-container {
     margin-top: 0px;
@@ -378,6 +378,9 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+  }
+  .search-bar {
+    height: 42px;
   }
   .watched-queue-buttons {
     margin-right: 32px;
