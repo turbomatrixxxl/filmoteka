@@ -216,6 +216,7 @@ headerSearchBtn.addEventListener('click', ev => {
                 modalGenre.textContent = genres;
 
                 modalWindow.classList.toggle('is-hidden');
+
                 // heroModalCloseBtn.addEventListener('click', () => {
                 //   heroModalCardContainer.classList.toggle('is-hidden');
                 // });
