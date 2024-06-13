@@ -1,3 +1,19 @@
+// function navigateTo(path) {
+//   // Add a new entry to the history and update the URL
+//   history.pushState(null, null, path);
+//   // Update the content dynamically based on the selected path
+//   updateContent('./index.html');
+// }
+
+window.addEventListener('keyup', event => {
+  if (event.key === 'Escape') {
+    if (modalWindow.classList.contains('is-hidden')) {
+      return;
+    }
+    modalWindow.classList.add('is-hidden');
+  }
+});
+
 // HEADER
 // Descris în documentație
 import SimpleLightbox from 'simplelightbox';
@@ -114,6 +130,13 @@ headerSearchBtn.addEventListener('click', ev => {
   headerInput.addEventListener('change', ev => {
     headerSearchBtn.disabled = false;
     console.log('change');
+  });
+
+  headerInput.addEventListener('input', ev => {
+    if (headerInput.value.length === 0) {
+      headerFormErrorMessage.style.display = 'none';
+    }
+    return;
   });
 
   searchText = headerInput.value.replace(/ /g, '%20');
@@ -424,9 +447,6 @@ fetch(trendingMoviesUrl, options)
         modalImage.setAttribute('src', linkSrc);
 
         modalWindow.classList.toggle('is-hidden');
-        // heroModalCloseBtn.addEventListener('click', () => {
-        //   heroModalCardContainer.classList.toggle('is-hidden');
-        // });
 
         // console.log(linkImage.src);
         // console.log(link.href);

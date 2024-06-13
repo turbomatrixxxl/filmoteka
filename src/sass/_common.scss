@@ -101,7 +101,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px 0;
+  padding: 20px 20px 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -303,6 +303,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 
 .modal-add-to-watched-btn {
