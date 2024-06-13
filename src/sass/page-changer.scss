@@ -24,6 +24,7 @@
   list-style: none;
   height: 45px;
   width: 45px;
+  margin: 5px;
 }
 .pagination ul li.numb.first {
   margin: 0px 3px 0 -5px;
@@ -34,9 +35,12 @@
 .pagination ul li.dots {
   font-size: 22px;
   cursor: default;
+  padding-bottom: 12px;
 }
 .pagination ul li.btn {
-  padding: 0 30px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 30%;
 }
 .pagination li.active,
 .pagination ul li.numb:hover,
@@ -44,12 +48,11 @@
 .pagination ul li:last-child:hover {
   cursor: default;
   display: flex;
-  align-items: center;
   justify-content: center;
   background-color: var(--red);
   color: #fff;
   width: 40px;
   height: 40px;
-
-  transform: none;
+  border-radius: 20%;
+  transition-duration: 0.5s;
 }
