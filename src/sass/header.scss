@@ -56,7 +56,7 @@
 
   border: none;
   border-radius: 100px;
-  background: var(--black);
+  background-color: var(--black);
 
   color: var(--white);
   text-align: center;
@@ -64,8 +64,7 @@
   font-weight: 500;
   text-transform: uppercase;
   transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    scale 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-home-button-link {
@@ -98,7 +97,7 @@
   font-weight: 500;
   text-transform: uppercase;
   transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    scale 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -108,7 +107,7 @@
   transform: scale(1.05);
   text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
   color: var(--white);
-  background-color: var(--red);
+  background-color: var(--black);
 }
 
 // Theme changer button
@@ -218,11 +217,15 @@ span {
   top: 10px;
   right: 14px;
 
-  transition: scale 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: text-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .search-form-button:hover,
 .search-form-button:focus {
+  box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
+  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
   transform: scale(1.15);
 }
 
@@ -306,24 +309,20 @@ span {
 
   border: none;
   border-radius: 100px;
-  background: var(--red);
+  background: var(--white);
   box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
 
-  color: var(--white);
+  color: var(--red);
   text-align: center;
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
 
   transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    scale 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.watched-buton:hover,
-.watched-buton:focus {
-  transform: scale(1.05);
-  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .queued-button {
@@ -337,7 +336,7 @@ span {
 
   border: none;
   border-radius: 100px;
-  background: var(--white);
+  background-color: var(--white);
 
   color: var(--red);
   text-align: center;
@@ -346,17 +345,21 @@ span {
   text-transform: uppercase;
 
   transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    scale 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.watched-buton:hover,
+.watched-buton:focus,
 .queued-button:hover,
 .queued-button:focus {
   transform: scale(1.05);
   text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
   color: var(--white);
   background-color: var(--red);
+  box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
 }
 
 .is-hidden {
