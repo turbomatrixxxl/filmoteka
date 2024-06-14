@@ -73,6 +73,9 @@ body {
 }
 
 //   Classes
+.is-hidden {
+  display: none;
+}
 
 // mobile first
 .header-container {
@@ -309,7 +312,7 @@ body {
 .modal-add-to-watched-btn {
   cursor: pointer;
   display: flex;
-  padding: 10px 12px;
+  padding: 8px 6px;
   align-items: flex-start;
   gap: 10px;
 
@@ -336,7 +339,7 @@ body {
 .modal-add-to-queue-btn {
   cursor: pointer;
   display: flex;
-  padding: 10px 6px;
+  padding: 8px 6px;
   align-items: flex-start;
   gap: 10px;
 
@@ -364,7 +367,7 @@ body {
 .modal-add-to-queue-btn:focus,
 .modal-add-to-watched-btn:hover,
 .modal-add-to-watched-btn:focus {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
   text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
   background-color: var(--red);

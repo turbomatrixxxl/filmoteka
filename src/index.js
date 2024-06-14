@@ -14,13 +14,43 @@ window.addEventListener('keyup', event => {
   }
 });
 
+// Local storage functions
+const save = (key, value) => {
+  try {
+    const serializedState = JSON.stringify(value);
+    localStorage.setItem(key, serializedState);
+  } catch (error) {
+    console.error('Set state error: ', error.message);
+  }
+};
+
+const load = key => {
+  try {
+    const serializedState = localStorage.getItem(key);
+    return serializedState === null ? undefined : JSON.parse(serializedState);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
+};
+
+const remove = key => {
+  try {
+    const serializedState = localStorage.removeItem(key);
+    return serializedState === null
+      ? undefined
+      : JSON.stringify(serializedState);
+  } catch (error) {
+    console.error('Get state error: ', error.message);
+  }
+};
+
 // HEADER
 // Descris în documentație
-import SimpleLightbox from 'simplelightbox';
-// Import suplimentar de stil
-import 'simplelightbox/dist/simple-lightbox.min.css';
+// import SimpleLightbox from 'simplelightbox';
+// // Import suplimentar de stil
+// import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 var _ = require('lodash');
 
@@ -105,20 +135,90 @@ const modalCloseBtn = document.querySelector('.modal-close-button');
 modalCloseBtn.addEventListener('click', () => {
   modalWindow.classList.toggle('is-hidden');
 });
+
+// remove('watched');
 const modalAddToWatchBtn = document.querySelector('.modal-add-to-watched-btn');
+const modalRemFromWatchBtn = document.querySelector('.remove-from-watched');
 modalAddToWatchBtn.addEventListener('click', ev => {
-  modalAddToWatchBtn.textContent = 'remove from watched';
-  modalAddToWatchBtn.addEventListener('click', ev => {
-    modalAddToWatchBtn.textContent = 'add to watched';
-  });
+  let id = modalImage.getAttribute('id');
+  console.log(id);
+
+  let watched = load('watched');
+  console.log(watched);
+
+  if (watched === undefined) {
+    save('watched', [id]);
+  } else {
+    if (watched.includes(id[0])) {
+      console.log('true');
+      return;
+    } else {
+      watched.push(`${id}`);
+      console.log(watched);
+      save('watched', watched);
+    }
+  }
+
+  modalAddToWatchBtn.classList.toggle('is-hidden');
+  modalRemFromWatchBtn.classList.toggle('is-hidden');
 });
 
+modalRemFromWatchBtn.addEventListener('click', ev => {
+  let id = modalImage.getAttribute('id');
+  console.log(id);
+  console.log(id);
+
+  let watched = load('watched');
+  console.log(watched);
+
+  let watchedd = watched.filter(x => x !== id[0]);
+  console.log(watchedd);
+
+  save('watched', watchedd);
+
+  modalAddToWatchBtn.classList.toggle('is-hidden');
+  modalRemFromWatchBtn.classList.toggle('is-hidden');
+});
+
+remove('feedback-form-state');
 const modalAddToQueueBtn = document.querySelector('.modal-add-to-queue-btn');
+const modalRemFromQueueBtn = document.querySelector('.remove-from-queue-btn');
+
 modalAddToQueueBtn.addEventListener('click', ev => {
-  modalAddToQueueBtn.textContent = 'remove from queque';
-  modalAddToQueueBtn.addEventListener('click', ev => {
-    modalAddToQueueBtn.textContent = 'add to queque';
-  });
+  let id = [modalImage.getAttribute('id')];
+  console.log(id);
+
+  let queued = load('watched');
+  console.log(queued);
+
+  if (queued === undefined) {
+    save('queued', [id]);
+  } else {
+    if (!queued.includes(id[0])) {
+      console.log('true');
+      queued.push(`${id}`);
+      console.log(watched);
+      save('queued', watched);
+    }
+  }
+
+  modalAddToQueueBtn.classList.toggle('is-hidden');
+  modalRemFromQueueBtn.classList.toggle('is-hidden');
+});
+
+modalRemFromQueueBtn.addEventListener('click', ev => {
+  let id = modalImage.getAttribute('id');
+  console.log(id);
+
+  let queued = load('queued');
+  console.log(queued);
+
+  let queuedd = queued.filter(x => x !== id[0]);
+  console.log(queuedd);
+  save('queued', queuedd);
+
+  modalRemFromQueueBtn.classList.toggle('is-hidden');
+  modalAddToQueueBtn.classList.toggle('is-hidden');
 });
 
 headerSearchBtn.addEventListener('click', ev => {
@@ -185,6 +285,9 @@ headerSearchBtn.addEventListener('click', ev => {
                 const linkSrc = currentLink.href;
                 // console.log(linkSrc);
                 modalImage.setAttribute('src', linkSrc);
+
+                const linkId = currentLink.getAttribute('id');
+                modalImage.setAttribute('id', linkId);
 
                 const linkTitle = currentLink.getAttribute('title');
                 // console.log(linkTitle);
@@ -299,6 +402,9 @@ headerSearchBtn.addEventListener('click', ev => {
             const linkSrc = currentLink.href;
             // console.log(linkSrc);
             modalImage.setAttribute('src', linkSrc);
+
+            const linkId = currentLink.getAttribute('id');
+            modalImage.setAttribute('id', linkId);
 
             const linkTitle = currentLink.getAttribute('title');
             // console.log(linkTitle);
@@ -416,6 +522,10 @@ fetch(trendingMoviesUrl, options)
 
         const linkSrc = currentLink.href;
         // console.log(linkSrc);
+        modalImage.setAttribute('src', linkSrc);
+
+        const linkId = currentLink.getAttribute('id');
+        modalImage.setAttribute('id', linkId);
 
         const linkTitle = currentLink.getAttribute('title');
         // console.log(linkTitle);
@@ -444,8 +554,6 @@ fetch(trendingMoviesUrl, options)
         const genres = currentLink.getAttribute('genres');
         // console.log(genres);
         modalGenre.textContent = genres;
-
-        modalImage.setAttribute('src', linkSrc);
 
         modalWindow.classList.toggle('is-hidden');
 
@@ -516,6 +624,7 @@ function renderCards(params) {
   heroLink.setAttribute('popularity', `${params.popularity}`);
   heroLink.setAttribute('original_title', `${params.original_title}`);
   heroLink.setAttribute('description', `${params.overview}`);
+  heroLink.setAttribute('id', params.id);
 
   heroCardListItem.append(heroLink);
 
@@ -534,6 +643,8 @@ function renderCards(params) {
   img.setAttribute('class', `hero-cards-image`);
   img.setAttribute('alt', `${params.media_type}`);
   img.setAttribute('loading', `lazy`);
+  img.setAttribute('id', params.id);
+
   // console.log(img);
 
   heroLink.append(img);
@@ -666,10 +777,7 @@ window.onscroll = function () {
   scrollFunction();
 };
 function scrollFunction() {
-  if (
-    document.body.scrollTop > 100 ||
-    document.documentElement.scrollTop > 100
-  ) {
+  if (document.documentElement.scrollTop > 700) {
     // console.log(document.body.scrollTop);
     // console.log(document.documentElement.scrollTop);
     // console.log(document.documentElement);
