@@ -1,3 +1,109 @@
-.hero-section-films {
-  background-color: red;
+.hero-img {
+  width: 280px;
+  height: 402px;
+  margin-top: 48px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  border-radius: 5px;
+  // background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+}
+.hero-info-item-title {
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 12px;
+  color: black;
+  text-transform: uppercase;
+  line-height: normal;
+  text-align: left;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.hero-info-item-genre {
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  color: #b92f2c;
+  text-align: left;
+  margin-left: 20px;
+}
+.hero-info-item-release {
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  color: #b92f2c;
+  text-align: left;
+  margin-left: 20px;
+  padding: 0;
+}
+.hero-info-item-vote {
+  visibility: hidden;
+}
+.hero-info-item-description {
+  visibility: hidden;
+}
+.hero-about {
+  visibility: hidden;
+}
+.hero-button-watched {
+  visibility: hidden;
+}
+.hero-button-queue {
+  visibility: hidden;
+}
+.hero-info-item-popularity {
+  visibility: hidden;
+}
+.hero-info-item-vote {
+  visibility: hidden;
+}
+.hero-films-list {
+  // display: flex;
+  // flex-wrap: wrap;
+  // flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-content: center;
+  padding: 10px;
+  gap: 5px;
+}
+.hero-photo-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+// Tablet Breakpoint
+@media screen and (width >=768px) {
+  .hero-films-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero-img {
+    width: 336px;
+    height: 455px;
+  }
+  .hero-info-item-title {
+    line-height: 16px;
+  }
+}
+// Desktop Breakpoint
+@media screen and (width >=1158px) {
+  .hero-films-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .hero-img {
+    width: 395px;
+    height: 574px;
+    margin: 0 auto;
+  }
+  .hero-info-item-title {
+  }
+  .hero-film-info {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
