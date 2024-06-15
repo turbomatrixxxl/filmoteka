@@ -58,24 +58,13 @@ function getFilms(hits, genresLabels) {
     <p class="hero-info-item-title">
        ${item.title}
       </p>
-    <p class="hero-info-item-vote">
-      <b> Vote/Votes</b> ${item.vote_average}/${item.vote_count}
-      </p>
-    <p class="hero-info-item-popularity">
-      <b>Popularity</b>${item.popularity}
-      </p>
-      <p class="hero-info-item">
-
-      </p>
+    
     <p class="hero-info-item-genre">
       <b>Genre</b> ${item.genre_ids.map(id => genresLabels[id] + ', ')}
       </p>
     <p class="hero-info-item-release">
        ${item.release_date}
-      </p>
-      <p class="hero-info-item-description">
-      <b class = "hero-about">About</b>${item.overview}
-      </p>
+      </p>      
       <div>
       </div>
       <button class="hero-button-watched" type= submit>Add to Watched</button>
