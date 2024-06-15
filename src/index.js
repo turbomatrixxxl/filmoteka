@@ -60,7 +60,9 @@ function getFilms(hits, genresLabels) {
       </p>
     
     <p class="hero-info-item-genre">
-      <b>Genre</b> ${item.genre_ids.map(id => genresLabels[id] + ', ')}
+      <b>Genre</b> ${item.genre_ids
+        .map(id => genresLabels[id] + ' ')
+        .slice(0, 2)}
       </p>
     <p class="hero-info-item-release">
        ${item.release_date}
