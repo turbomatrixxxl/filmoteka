@@ -136,74 +136,105 @@ modalCloseBtn.addEventListener('click', () => {
   modalWindow.classList.toggle('is-hidden');
 });
 
+function isHidden(params) {
+  params.classList.add('is-hidden');
+}
+
+function remHidden(params) {
+  params.classList.remove('is-hidden');
+}
+
+function addRemButtons(params, id, addBtn, remBtn) {
+  let status = load(`${params}`);
+  console.log(status);
+  if (status.includes(id)) {
+    isHidden(addBtn);
+    remHidden(remBtn);
+  } else {
+    isHidden(remBtn);
+    remHidden(addBtn);
+  }
+}
+
+// Watch buttons
 // remove('watched');
+// remove('queued');
 const modalAddToWatchBtn = document.querySelector('.modal-add-to-watched-btn');
 const modalRemFromWatchBtn = document.querySelector('.remove-from-watched');
+
+isHidden(modalRemFromWatchBtn);
+
 modalAddToWatchBtn.addEventListener('click', ev => {
   let id = modalImage.getAttribute('id');
-  console.log(id);
+  // console.log(id);
 
   let watched = load('watched');
-  console.log(watched);
+  // console.log(watched);
 
-  if (watched === undefined) {
+  if (watched === undefined || watched.length === 0) {
     save('watched', [id]);
   } else {
-    if (watched.includes(id[0])) {
-      console.log('true');
-      return;
-    } else {
-      watched.push(`${id}`);
-      console.log(watched);
+    const tru = watched.includes(id);
+
+    if (!tru) {
+      watched.push(id);
       save('watched', watched);
+      // console.log('it dont has');
+    } else {
+      console.log('it has');
     }
   }
 
-  modalAddToWatchBtn.classList.toggle('is-hidden');
-  modalRemFromWatchBtn.classList.toggle('is-hidden');
+  isHidden(modalAddToWatchBtn);
+  remHidden(modalRemFromWatchBtn);
 });
 
 modalRemFromWatchBtn.addEventListener('click', ev => {
   let id = modalImage.getAttribute('id');
-  console.log(id);
-  console.log(id);
+  // console.log(id);
 
   let watched = load('watched');
-  console.log(watched);
+  // console.log(watched);
 
-  let watchedd = watched.filter(x => x !== id[0]);
-  console.log(watchedd);
+  let watchedd = watched.filter(x => x !== id);
+  // console.log(watchedd);
 
   save('watched', watchedd);
 
-  modalAddToWatchBtn.classList.toggle('is-hidden');
-  modalRemFromWatchBtn.classList.toggle('is-hidden');
+  isHidden(modalRemFromWatchBtn);
+  remHidden(modalAddToWatchBtn);
 });
 
-remove('feedback-form-state');
+// Queue buttons
 const modalAddToQueueBtn = document.querySelector('.modal-add-to-queue-btn');
 const modalRemFromQueueBtn = document.querySelector('.remove-from-queue-btn');
 
+isHidden(modalRemFromQueueBtn);
+
 modalAddToQueueBtn.addEventListener('click', ev => {
-  let id = [modalImage.getAttribute('id')];
+  let id = modalImage.getAttribute('id');
   console.log(id);
 
-  let queued = load('watched');
+  let queued = load('queued');
   console.log(queued);
 
-  if (queued === undefined) {
+  if (queued === undefined || queued.length === 0) {
     save('queued', [id]);
   } else {
-    if (!queued.includes(id[0])) {
-      console.log('true');
-      queued.push(`${id}`);
-      console.log(watched);
-      save('queued', watched);
+    const tru = queued.includes(id);
+
+    if (!tru) {
+      queued.push(id);
+      console.log(queued);
+      save('queued', queued);
+      console.log('it dont has');
+    } else {
+      console.log('it has');
     }
   }
 
-  modalAddToQueueBtn.classList.toggle('is-hidden');
-  modalRemFromQueueBtn.classList.toggle('is-hidden');
+  isHidden(modalAddToQueueBtn);
+  remHidden(modalRemFromQueueBtn);
 });
 
 modalRemFromQueueBtn.addEventListener('click', ev => {
@@ -213,12 +244,12 @@ modalRemFromQueueBtn.addEventListener('click', ev => {
   let queued = load('queued');
   console.log(queued);
 
-  let queuedd = queued.filter(x => x !== id[0]);
+  let queuedd = queued.filter(x => x !== id);
   console.log(queuedd);
   save('queued', queuedd);
 
-  modalRemFromQueueBtn.classList.toggle('is-hidden');
-  modalAddToQueueBtn.classList.toggle('is-hidden');
+  isHidden(modalRemFromQueueBtn);
+  remHidden(modalAddToQueueBtn);
 });
 
 headerSearchBtn.addEventListener('click', ev => {
@@ -288,6 +319,20 @@ headerSearchBtn.addEventListener('click', ev => {
 
                 const linkId = currentLink.getAttribute('id');
                 modalImage.setAttribute('id', linkId);
+
+                addRemButtons(
+                  'queued',
+                  linkId,
+                  modalAddToQueueBtn,
+                  modalRemFromQueueBtn
+                );
+
+                addRemButtons(
+                  'watched',
+                  linkId,
+                  modalAddToWatchBtn,
+                  modalRemFromWatchBtn
+                );
 
                 const linkTitle = currentLink.getAttribute('title');
                 // console.log(linkTitle);
@@ -366,6 +411,23 @@ headerSearchBtn.addEventListener('click', ev => {
           const currentLink = ev.currentTarget;
           console.log(currentLink);
 
+          const linkId = currentLink.getAttribute('id');
+          modalImage.setAttribute('id', linkId);
+
+          addRemButtons(
+            'queued',
+            linkId,
+            modalAddToQueueBtn,
+            modalRemFromQueueBtn
+          );
+
+          addRemButtons(
+            'watched',
+            linkId,
+            modalAddToWatchBtn,
+            modalRemFromWatchBtn
+          );
+
           if (currentLink.href === noImageUrl) {
             modalImage.setAttribute('src', noImageUrl);
 
@@ -405,6 +467,20 @@ headerSearchBtn.addEventListener('click', ev => {
 
             const linkId = currentLink.getAttribute('id');
             modalImage.setAttribute('id', linkId);
+
+            addRemButtons(
+              'queued',
+              linkId,
+              modalAddToQueueBtn,
+              modalRemFromQueueBtn
+            );
+
+            addRemButtons(
+              'watched',
+              linkId,
+              modalAddToWatchBtn,
+              modalRemFromWatchBtn
+            );
 
             const linkTitle = currentLink.getAttribute('title');
             // console.log(linkTitle);
@@ -526,6 +602,20 @@ fetch(trendingMoviesUrl, options)
 
         const linkId = currentLink.getAttribute('id');
         modalImage.setAttribute('id', linkId);
+
+        addRemButtons(
+          'queued',
+          linkId,
+          modalAddToQueueBtn,
+          modalRemFromQueueBtn
+        );
+
+        addRemButtons(
+          'watched',
+          linkId,
+          modalAddToWatchBtn,
+          modalRemFromWatchBtn
+        );
 
         const linkTitle = currentLink.getAttribute('title');
         // console.log(linkTitle);
