@@ -44,16 +44,19 @@ const remove = key => {
   }
 };
 
-// HEADER
+// SimpleLightbox import
 // Descris în documentație
-// import SimpleLightbox from 'simplelightbox';
-// // Import suplimentar de stil
-// import 'simplelightbox/dist/simple-lightbox.min.css';
+import SimpleLightbox from 'simplelightbox';
+// Import suplimentar de stil
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// import axios from 'axios';
+// Axios import
+import axios from 'axios';
 
+// Lodash import
 var _ = require('lodash');
 
+// Fetch2 import for Api
 const fetch = require('node-fetch');
 
 const body = document.body;
@@ -95,6 +98,8 @@ let page = 1;
 
 const heroList = document.querySelector('.gallery');
 
+const apiKey = '90080ff184cabebdf1b42eaa88fb5738';
+
 const noImageUrl =
   'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg';
 
@@ -104,7 +109,7 @@ const noImageUrl =
 // const url =
 //   `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
 
-// const url = 'https://api.themoviedb.org/3/keyword/keyword_id';
+// const IdUrl = `https://api.themoviedb.org/3/movie/${movieId}_id?language=en-US&page=${page}`;
 
 const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${page}`;
 
@@ -146,13 +151,16 @@ function remHidden(params) {
 
 function addRemButtons(params, id, addBtn, remBtn) {
   let status = load(`${params}`);
-  console.log(status);
-  if (status.includes(id)) {
-    isHidden(addBtn);
-    remHidden(remBtn);
-  } else {
+  if (status === undefined) {
     isHidden(remBtn);
     remHidden(addBtn);
+  } else {
+    // console.log(status);
+    if (status.includes(id)) {
+      isHidden(addBtn);
+      remHidden(remBtn);
+    } else {
+      isHidden(remBtn);
   }
 }
 
@@ -252,6 +260,8 @@ modalRemFromQueueBtn.addEventListener('click', ev => {
   remHidden(modalAddToQueueBtn);
 });
 
+// Header search form
+
 headerSearchBtn.addEventListener('click', ev => {
   ev.preventDefault();
 
@@ -320,6 +330,7 @@ headerSearchBtn.addEventListener('click', ev => {
                 const linkId = currentLink.getAttribute('id');
                 modalImage.setAttribute('id', linkId);
 
+                // add remove buttons
                 addRemButtons(
                   'queued',
                   linkId,
@@ -334,6 +345,7 @@ headerSearchBtn.addEventListener('click', ev => {
                   modalRemFromWatchBtn
                 );
 
+                // add in link necesary attributes from api's
                 const linkTitle = currentLink.getAttribute('title');
                 // console.log(linkTitle);
                 modalTitle.textContent = linkTitle;
@@ -365,15 +377,6 @@ headerSearchBtn.addEventListener('click', ev => {
 
                 modalWindow.classList.toggle('is-hidden');
 
-                // heroModalCloseBtn.addEventListener('click', () => {
-                //   heroModalCardContainer.classList.toggle('is-hidden');
-                // });
-
-                // console.log(linkImage.src);
-                // console.log(link.href);
-
-                // linkImage.src = link.href;
-
                 // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
                 // let gallery = new SimpleLightbox(`.gallery a`, {
                 //   captionsData: 'src',
@@ -393,10 +396,12 @@ headerSearchBtn.addEventListener('click', ev => {
         headerFormErrorMessage.style.display = 'none';
       }
 
+      // create movies cards
       movies.map(element => {
         renderCards(element);
       });
 
+      // Create modal for each link
       const heroImagesLink = document.querySelectorAll('.hero-cards-link');
       // console.log(heroImagesLink);
 
@@ -414,6 +419,7 @@ headerSearchBtn.addEventListener('click', ev => {
           const linkId = currentLink.getAttribute('id');
           modalImage.setAttribute('id', linkId);
 
+          // Setting state for each link ad/remove watch/queue button
           addRemButtons(
             'queued',
             linkId,
@@ -428,98 +434,47 @@ headerSearchBtn.addEventListener('click', ev => {
             modalRemFromWatchBtn
           );
 
+          // condition if link has or not url for image
           if (currentLink.href === noImageUrl) {
             modalImage.setAttribute('src', noImageUrl);
-
-            const linkTitle = currentLink.getAttribute('title');
-            // console.log(linkTitle);
-            modalTitle.textContent = linkTitle;
-
-            const linkVote = currentLink.getAttribute('vote');
-            // console.log(linkVote);
-            modalVote.textContent = linkVote;
-
-            const linkVotes = currentLink.getAttribute('votes');
-            // console.log(linkVotes);
-            modalVotes.textContent = linkVotes;
-
-            const linkPopurarity = currentLink.getAttribute('popularity');
-            // console.log(linkPopurarity);
-            modalPopularity.textContent = linkPopurarity;
-
-            const linkOrigTitle = currentLink.getAttribute('original_title');
-            // console.log(linkOrigTitle);
-            modalOrigTitle.textContent = linkOrigTitle;
-
-            const linkDescription = currentLink.getAttribute('description');
-            // console.log(linkDescription);
-            modalDescription.textContent = linkDescription;
-
-            const genres = currentLink.getAttribute('genres');
-            // console.log(genres);
-            modalGenre.textContent = genres;
-
-            modalWindow.classList.remove('is-hidden');
           } else {
+            // add in link necesary attribute from api's
             const linkSrc = currentLink.href;
             // console.log(linkSrc);
             modalImage.setAttribute('src', linkSrc);
-
-            const linkId = currentLink.getAttribute('id');
-            modalImage.setAttribute('id', linkId);
-
-            addRemButtons(
-              'queued',
-              linkId,
-              modalAddToQueueBtn,
-              modalRemFromQueueBtn
-            );
-
-            addRemButtons(
-              'watched',
-              linkId,
-              modalAddToWatchBtn,
-              modalRemFromWatchBtn
-            );
-
-            const linkTitle = currentLink.getAttribute('title');
-            // console.log(linkTitle);
-            modalTitle.textContent = linkTitle;
-
-            const linkVote = currentLink.getAttribute('vote');
-            // console.log(linkVote);
-            modalVote.textContent = linkVote;
-
-            const linkVotes = currentLink.getAttribute('votes');
-            // console.log(linkVotes);
-            modalVotes.textContent = linkVotes;
-
-            const linkPopurarity = currentLink.getAttribute('popularity');
-            // console.log(linkPopurarity);
-            modalPopularity.textContent = linkPopurarity;
-
-            const linkOrigTitle = currentLink.getAttribute('original_title');
-            // console.log(linkOrigTitle);
-            modalOrigTitle.textContent = linkOrigTitle;
-
-            const linkDescription = currentLink.getAttribute('description');
-            // console.log(linkDescription);
-            modalDescription.textContent = linkDescription;
-
-            const genres = currentLink.getAttribute('genres');
-            // console.log(genres);
-            modalGenre.textContent = genres;
-
-            modalWindow.classList.remove('is-hidden');
           }
-          // heroModalCloseBtn.addEventListener('click', () => {
-          //   heroModalCardContainer.classList.toggle('is-hidden');
-          // });
 
-          // console.log(linkImage.src);
-          // console.log(link.href);
+          // add in link necesary attributes from api's
 
-          // linkImage.src = link.href;
+          const linkTitle = currentLink.getAttribute('title');
+          // console.log(linkTitle);
+          modalTitle.textContent = linkTitle;
+
+          const linkVote = currentLink.getAttribute('vote');
+          // console.log(linkVote);
+          modalVote.textContent = linkVote;
+
+          const linkVotes = currentLink.getAttribute('votes');
+          // console.log(linkVotes);
+          modalVotes.textContent = linkVotes;
+
+          const linkPopurarity = currentLink.getAttribute('popularity');
+          // console.log(linkPopurarity);
+          modalPopularity.textContent = linkPopurarity;
+
+          const linkOrigTitle = currentLink.getAttribute('original_title');
+          // console.log(linkOrigTitle);
+          modalOrigTitle.textContent = linkOrigTitle;
+
+          const linkDescription = currentLink.getAttribute('description');
+          // console.log(linkDescription);
+          modalDescription.textContent = linkDescription;
+
+          const genres = currentLink.getAttribute('genres');
+          // console.log(genres);
+          modalGenre.textContent = genres;
+
+          modalWindow.classList.remove('is-hidden');
 
           // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
           // let gallery = new SimpleLightbox(`.gallery a`, {
@@ -538,22 +493,84 @@ headerSearchBtn.addEventListener('click', ev => {
     .catch(err => console.error('error:' + err));
 });
 
+// setting state of to watched/queue buttons
 libraryButton.addEventListener('click', ev => {
   headerBottomButtonsContainer.classList.toggle('is-hidden');
 });
 
+// setting state of to dark theme button
 darkThemeButton.addEventListener('click', ev => {
   var isChecked = darkThemeButton.checked;
 
   if (isChecked) {
+    const curentTheme = load('current-theme');
+    if (curentTheme === undefined) {
+      save('current-theme', 'dark');
+    } else {
+      remove('current-theme');
+      save('current-theme', 'dark');
+    }
     body.style.backgroundColor = 'var(--gray)';
   } else {
+    const curentTheme = load('current-theme');
+    if (curentTheme === undefined) {
+      save('current-theme', 'light');
+    } else {
+      remove('current-theme');
+      save('current-theme', 'light');
+    }
     body.style.backgroundColor = 'var(--white)';
   }
 });
 
+// setting state of to watched button and getting watched page
 headerWatchedButton.addEventListener('click', ev => {
+  heroList.innerHTML = null;
+  const moviesIdList = load('watched');
+
+  if (moviesIdList === undefined || moviesIdList.length === 0) {
+    let emptyListMessage = document.createElement('p');
+    emptyListMessage.setAttribute('class', 'empty-list');
+    emptyListMessage.textContent = 'Oops ! Your "Watched" library is empty !';
+
+    heroList.append(emptyListMessage);
+  } else {
+    console.log(moviesIdList);
+
+    const optionsId = {
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    moviesIdList.forEach(movieId => {
+      const urlApi = `https://api.themoviedb.org/3/movie/${movieId}?&api_key=${apiKey}&language=en-US&page=1`;
+
+      fetch(urlApi, optionsId)
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          const movie = res;
+
+          renderWatchQueueCards(movie);
+        })
+        .catch(err => console.error('error:' + err));
+    });
+  }
+
+  // clear watched list
   headerClearWatchedButton.classList.toggle('is-hidden');
+  headerClearWatchedButton.addEventListener('click', ev => {
+    heroList.innerHTML === null;
+    remove('watched');
+    let emptyListMessage = document.createElement('p');
+    emptyListMessage.setAttribute('class', 'empty-list');
+    emptyListMessage.textContent = 'Oops ! Your "Watched" library is empty !';
+
+    heroList.append(emptyListMessage);
+  });
+
+  // hidding clear queued button
   if (headerClearQueuedButton.classList.contains('is-hidden')) {
     return;
   } else {
@@ -561,8 +578,54 @@ headerWatchedButton.addEventListener('click', ev => {
   }
 });
 
+// setting state of to queued button and getting watched page
 headerQueuedButton.addEventListener('click', ev => {
+  heroList.innerHTML = null;
+  const moviesIdList = load('queued');
+  // console.log(moviesIdList);
+
+  if (moviesIdList === undefined || moviesIdList.length === 0) {
+    let emptyListMessage = document.createElement('p');
+    emptyListMessage.setAttribute('class', 'empty-list');
+    emptyListMessage.textContent = 'Oops ! Your "Queued" library is empty !';
+
+    heroList.append(emptyListMessage);
+  } else {
+    // console.log(moviesIdList);
+    const optionsId = {
+      headers: {
+        Accept: 'application/json',
+      },
+    };
+
+    moviesIdList.forEach(movieId => {
+      const urlApi = `https://api.themoviedb.org/3/movie/${movieId}?&api_key=${apiKey}&language=en-US&page=1`;
+
+      fetch(urlApi, optionsId)
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+          const movie = res;
+
+          renderWatchQueueCards(movie);
+        })
+        .catch(err => console.error('error:' + err));
+    });
+  }
+
+  // clear queued list
   headerClearQueuedButton.classList.toggle('is-hidden');
+  headerClearQueuedButton.addEventListener('click', ev => {
+    heroList.innerHTML = null;
+    remove('queued');
+    let emptyListMessage = document.createElement('p');
+    emptyListMessage.setAttribute('class', 'empty-list');
+    emptyListMessage.textContent = 'Oops ! Your "Queued" library is empty !';
+
+    heroList.append(emptyListMessage);
+  });
+
+  // hidding clear watched button
   if (headerClearWatchedButton.classList.contains('is-hidden')) {
     return;
   } else {
@@ -646,11 +709,6 @@ fetch(trendingMoviesUrl, options)
         modalGenre.textContent = genres;
 
         modalWindow.classList.toggle('is-hidden');
-
-        // console.log(linkImage.src);
-        // console.log(link.href);
-
-        // linkImage.src = link.href;
 
         // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
         // let gallery = new SimpleLightbox(`.gallery a`, {
@@ -794,28 +852,29 @@ function renderCards(params) {
       heroGenresOther.setAttribute('class', 'hero-movie-genres-list-item');
       heroGenresOther.textContent = 'Otherr';
       heroMovieGenresList.append(heroGenresOther);
+    } else {
+      movieGenres.forEach(element => {
+        // console.log(element);
+        const heroMovieGenresListItem = document.createElement('li');
+        heroMovieGenresListItem.setAttribute(
+          'class',
+          'hero-movie-genres-list-item'
+        );
+
+        fetch(genresApiUrl, options)
+          .then(res => res.json())
+          .then(res => {
+            res.genres.map(x => {
+              if (x.id === element) {
+                heroMovieGenresListItem.textContent = `${x.name},`;
+              }
+            });
+          })
+          .catch(err => console.error('error:' + err));
+
+        heroMovieGenresList.append(heroMovieGenresListItem);
+      });
     }
-    movieGenres.forEach(element => {
-      // console.log(element);
-      const heroMovieGenresListItem = document.createElement('li');
-      heroMovieGenresListItem.setAttribute(
-        'class',
-        'hero-movie-genres-list-item'
-      );
-
-      fetch(genresApiUrl, options)
-        .then(res => res.json())
-        .then(res => {
-          res.genres.map(x => {
-            if (x.id === element) {
-              heroMovieGenresListItem.textContent = `${x.name},`;
-            }
-          });
-        })
-        .catch(err => console.error('error:' + err));
-
-      heroMovieGenresList.append(heroMovieGenresListItem);
-    });
   }
 
   setTimeout(heroCommaRemove, 2000);
@@ -849,14 +908,175 @@ function renderCards(params) {
   heroMovieDetailsContainer.append(heroMovieGenresList, yearCard, votes);
 }
 
-// // Lightbox modal
+function renderWatchQueueCards(params) {
+  const heroCardListItem = document.createElement('div');
+  heroCardListItem.setAttribute('class', 'movie-card item');
+  heroCardListItem.setAttribute('data-movie-id', `${params.id}`);
+  heroList.append(heroCardListItem);
 
-// // div container central
-// const heroModalCentralContainer = document.querySelector('.sl-image');
-// console.log(heroModalCentralContainer);
+  const heroLink = document.createElement('a');
+  if (params.backdrop_path === null) {
+    heroLink.setAttribute(
+      'href',
+      'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg'
+    );
+  } else {
+    heroLink.setAttribute(
+      'href',
+      `https://image.tmdb.org/t/p/original/${params.poster_path}`
+    );
+  }
 
-// const heroModalImg = heroModalCentralContainer.querySelector('img');
-// console.log(heroModalImg);
+  const genresName = params.genres;
+  console.log(genresName);
+  const genresNameLength = genresName.length;
+  let genres = [];
+
+  if (genresNameLength <= 2) {
+    genresName.map(genre => {
+      genres.push(genre.name);
+      heroLink.setAttribute('genres', genres);
+    });
+  } else {
+    genres.push(genresName[0].name, genresName[1].name, 'other');
+    heroLink.setAttribute('genres', genres);
+  }
+
+  heroLink.setAttribute('class', `hero-cards-link`);
+  heroLink.setAttribute('title', `${params.title}`);
+  heroLink.setAttribute('vote', `${params.vote_average}`);
+  heroLink.setAttribute('votes', `${params.vote_count}`);
+  heroLink.setAttribute('popularity', `${params.popularity}`);
+  heroLink.setAttribute('original_title', `${params.original_title}`);
+  heroLink.setAttribute('description', `${params.overview}`);
+  heroLink.setAttribute('id', params.id);
+
+  heroCardListItem.append(heroLink);
+
+  const img = document.createElement('img');
+  if (params.backdrop_path === null) {
+    img.setAttribute(
+      'src',
+      'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg'
+    );
+  } else {
+    img.setAttribute(
+      'src',
+      `https://image.tmdb.org/t/p/original/${params.backdrop_path}`
+    );
+  }
+  img.setAttribute('class', `hero-cards-image`);
+  img.setAttribute('alt', `${params.media_type}`);
+  img.setAttribute('loading', `lazy`);
+  img.setAttribute('id', params.id);
+
+  // console.log(img);
+
+  heroLink.append(img);
+
+  const heroCardDetails = document.createElement('div');
+  heroCardDetails.setAttribute('class', 'hero-movie-details-container');
+  heroCardDetails.setAttribute('data-movie-id', `${params.id}`);
+
+  heroCardListItem.append(heroCardDetails);
+
+  const heroMovieTitle = document.createElement('h3');
+  heroMovieTitle.setAttribute('class', 'hero-movie-title');
+  heroMovieTitle.textContent = `${params.title}`;
+
+  heroCardDetails.append(heroMovieTitle);
+
+  const heroMovieGenresList = document.createElement('ul');
+  heroMovieGenresList.setAttribute('class', 'hero-movie-genres-list');
+
+  let movieGenres = heroLink.getAttribute('genres');
+  console.log(movieGenres);
+
+  const heroMovieGenresListItem = document.createElement('li');
+  heroMovieGenresListItem.setAttribute('class', 'hero-movie-genres-list-item');
+
+  heroMovieGenresListItem.textContent = movieGenres;
+
+  heroMovieGenresList.append(heroMovieGenresListItem);
+
+  const date = params.release_date;
+  const year = date.slice(0, 4);
+  const yearCard = document.createElement('span');
+  yearCard.setAttribute('class', 'hero-year-span');
+  yearCard.textContent = `| ` + year;
+  // heroCardDetails.append(yearCard);
+
+  // console.log(params.vote_count);
+  const votes = document.createElement('span');
+  votes.setAttribute('class', 'hero-votes-span');
+  votes.textContent = params.vote_average;
+  // heroCardDetails.append(votes);
+
+  const heroMovieDetailsContainer = document.createElement('div');
+  heroMovieDetailsContainer.setAttribute('class', 'hero-details-container');
+  heroCardDetails.append(heroMovieDetailsContainer);
+  heroMovieDetailsContainer.append(heroMovieGenresList, yearCard, votes);
+
+  function link() {
+    // console.log(heroLink);
+
+    heroLink.addEventListener('click', ev => {
+      ev.preventDefault();
+
+      console.log(ev.target);
+      const currentLink = ev.currentTarget;
+      console.log(currentLink);
+
+      const linkSrc = currentLink.href;
+      // console.log(linkSrc);
+      modalImage.setAttribute('src', linkSrc);
+
+      const linkId = currentLink.getAttribute('id');
+      modalImage.setAttribute('id', linkId);
+
+      addRemButtons('queued', linkId, modalAddToQueueBtn, modalRemFromQueueBtn);
+
+      addRemButtons(
+        'watched',
+        linkId,
+        modalAddToWatchBtn,
+        modalRemFromWatchBtn
+      );
+
+      const linkTitle = currentLink.getAttribute('title');
+      // console.log(linkTitle);
+      modalTitle.textContent = linkTitle;
+
+      const linkVote = currentLink.getAttribute('vote');
+      // console.log(linkVote);
+      modalVote.textContent = linkVote;
+
+      const linkVotes = currentLink.getAttribute('votes');
+      // console.log(linkVotes);
+      modalVotes.textContent = linkVotes;
+
+      const linkPopurarity = currentLink.getAttribute('popularity');
+      // console.log(linkPopurarity);
+      modalPopularity.textContent = linkPopurarity;
+
+      const linkOrigTitle = currentLink.getAttribute('original_title');
+      // console.log(linkOrigTitle);
+      modalOrigTitle.textContent = linkOrigTitle;
+
+      const linkDescription = currentLink.getAttribute('description');
+      // console.log(linkDescription);
+      modalDescription.textContent = linkDescription;
+
+      const genres = currentLink.getAttribute('genres');
+      // console.log(genres);
+      modalGenre.textContent = genres;
+
+      modalWindow.classList.toggle('is-hidden');
+    });
+  }
+
+  link();
+}
 
 // PAGE-CHANGER
 

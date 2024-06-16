@@ -69,12 +69,47 @@ a {
 
 //   setam body pe relative pentru celelalte pozitii si modal
 body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
+}
+
+main {
+  flex-grow: 1;
 }
 
 //   Classes
 .is-hidden {
   display: none;
+}
+
+.light-theme {
+  background-color: var(--white);
+  color: var(--black);
+  border-color: var(--black);
+}
+
+.dark-theme {
+  background-color: var(--gray);
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.empty-list {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  color: var(--red);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // mobile first
@@ -269,6 +304,8 @@ body {
 }
 
 .modal-genre-result {
+  display: flex;
+  flex-wrap: wrap;
   text-transform: initial;
 }
 
