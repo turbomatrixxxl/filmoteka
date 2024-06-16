@@ -161,6 +161,8 @@ function addRemButtons(params, id, addBtn, remBtn) {
       remHidden(remBtn);
     } else {
       isHidden(remBtn);
+      remHidden(addBtn);
+    }
   }
 }
 
