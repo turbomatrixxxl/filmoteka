@@ -42,9 +42,12 @@
 }
 
 .hero-movie-details-container {
-  padding-top: 10px;
   display: flex;
   flex-direction: column;
+
+  padding: 0 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .hero-movie-title {

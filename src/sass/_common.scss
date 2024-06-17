@@ -19,10 +19,12 @@
   --font-family: 'Roboto', sans-serif;
   --white: #fff;
   --black: #000;
-  --red: #b92f2c;
+  --red: #ff6b08;
 
   //   Footer
   --gray: #545454;
+  --footer-bg: #f7f7f7;
+  --blue: rgb(16, 16, 211);
 
   //   Modal pentru fiecare film(scrisul mic)
   --light-gray: #8c8c8c;
@@ -69,6 +71,7 @@ a {
 
 //   setam body pe relative pentru celelalte pozitii si modal
 body {
+  background-color: var(--white);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -80,6 +83,7 @@ body {
 
 main {
   flex-grow: 1;
+  background-color: var(--white);
 }
 
 //   Classes
@@ -87,17 +91,17 @@ main {
   display: none;
 }
 
-.light-theme {
-  background-color: var(--white);
-  color: var(--black);
-  border-color: var(--black);
-}
+// .light-theme {
+//   background-color: var(--white);
+//   color: var(--black);
+//   border-color: var(--black);
+// }
 
-.dark-theme {
-  background-color: var(--gray);
-  color: var(--white);
-  border-color: var(--white);
-}
+// .dark-theme {
+//   background-color: var(--gray);
+//   color: var(--white);
+//   border-color: var(--white);
+// }
 
 .empty-list {
   display: flex;
@@ -107,7 +111,7 @@ main {
   font-size: 14px;
   line-height: 1.14;
   text-align: center;
-  color: var(--red);
+  color: #ff6b08;
   margin-left: auto;
   margin-right: auto;
 }
@@ -354,10 +358,10 @@ main {
   gap: 10px;
 
   border-radius: 100px;
-  border: 1px solid var(--black);
-  background-color: var(--white);
+  border: 1px solid black;
+  background-color: white;
 
-  color: var(--red);
+  color: #ff6b08;
   text-align: center;
   // font-family: Roboto;
   font-size: 12px;
@@ -381,10 +385,10 @@ main {
   gap: 10px;
 
   border-radius: 100px;
-  border: 1px solid var(--black);
-  background-color: var(--white);
+  border: 1px solid black;
+  background-color: white;
 
-  color: var(--red);
+  color: #ff6b08;
   text-align: center;
   // font-family: Roboto;
   font-size: 12px;
@@ -407,8 +411,8 @@ main {
   transform: scale(1.02);
   box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
   text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
-  background-color: var(--red);
-  color: var(--white);
+  background-color: #ff6b08;
+  color: white;
 }
 
 // Media querries

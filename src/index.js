@@ -45,6 +45,48 @@ const remove = key => {
   }
 };
 
+function setTheme(theme) {
+  if (theme === 'dark') {
+    remove('current-theme');
+    save('current-theme', 'dark');
+    document.documentElement.style.setProperty('--white', '#8c8c8c');
+    document.documentElement.style.setProperty('--gray', '#fff');
+    document.documentElement.style.setProperty('--ligt-gray', '#fff');
+    document.documentElement.style.setProperty('--red', '#fff');
+    document.documentElement.style.setProperty('--footer-bg', '#545454');
+    document.documentElement.style.setProperty('--blue', '#b92f2c');
+
+    document.documentElement.style.setProperty('--black', '#fff');
+    // alert('dark');
+  }
+  if (theme === 'light') {
+    remove('current-theme');
+    save('current-theme', 'light');
+    document.documentElement.style.setProperty('--white', '#fff');
+    document.documentElement.style.setProperty('--gray', '#545454');
+    document.documentElement.style.setProperty('--ligt-gray', '#8c8c8c');
+    document.documentElement.style.setProperty('--red', '#ff6b08');
+    document.documentElement.style.setProperty('--footer-bg', '#f7f7f7');
+    document.documentElement.style.setProperty('--blue', 'rgb(16, 16, 211)');
+
+    document.documentElement.style.setProperty('--black', '#000');
+  }
+}
+
+function loadTheme() {
+  //Add this to body onload, gets the current theme. If panelTheme is empty, defaults to blue.
+  if (
+    load('current-theme') === undefined ||
+    load('current-theme').includes('light')
+  ) {
+    setTheme('light');
+  } else {
+    setTheme(load('current-theme'));
+  }
+}
+
+// loadTheme();
+
 // SimpleLightbox import
 // Descris în documentație
 import SimpleLightbox from 'simplelightbox';
@@ -103,14 +145,6 @@ const apiKey = '90080ff184cabebdf1b42eaa88fb5738';
 
 const noImageUrl =
   'https://lascrucesfilmfest.com/wp-content/uploads/2018/01/no-poster-available.jpg';
-
-// const url =
-//   `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}`;
-
-// const url =
-//   `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
-
-// const IdUrl = `https://api.themoviedb.org/3/movie/${movieId}_id?language=en-US&page=${page}`;
 
 const trendingMoviesUrl = `https://api.themoviedb.org/3/trending/movie/day?language=en-US&page=${page}`;
 
@@ -501,30 +535,60 @@ libraryButton.addEventListener('click', ev => {
   headerBottomButtonsContainer.classList.toggle('is-hidden');
 });
 
+var issChecked = darkThemeButton.checked;
+const curentTheme = load('current-theme');
+
+if (curentTheme === undefined || curentTheme.includes('light')) {
+  remove('current-theme');
+  save('current-theme', 'light');
+  setTheme('light');
+  issChecked = false;
+} else {
+  remove('current-theme');
+  save('current-theme', 'dark');
+  setTheme('dark');
+  issChecked = true;
+}
+
+console.log(issChecked);
+
 // setting state of to dark theme button
 darkThemeButton.addEventListener('click', ev => {
   var isChecked = darkThemeButton.checked;
 
   if (isChecked) {
-    const curentTheme = load('current-theme');
+    // const curentTheme = load('current-theme');
     if (curentTheme === undefined) {
       save('current-theme', 'dark');
+      setTheme('dark');
     } else {
       remove('current-theme');
       save('current-theme', 'dark');
+      setTheme('dark');
     }
-    body.style.backgroundColor = 'var(--gray)';
+    // body.style.backgroundColor = 'var(--gray)';
   } else {
-    const curentTheme = load('current-theme');
+    // const curentTheme = load('current-theme');
     if (curentTheme === undefined) {
       save('current-theme', 'light');
+      setTheme('light');
     } else {
       remove('current-theme');
       save('current-theme', 'light');
+      setTheme('light');
     }
-    body.style.backgroundColor = 'var(--white)';
+    // body.style.backgroundColor = 'var(--white)';
   }
 });
+
+let toggle = window.getComputedStyle(
+  document.querySelector('.toggle'),
+  ':after'
+);
+// var str = window
+//   .getComputedStyle(document.querySelector('p'), ':before')
+//   .getPropertyValue('content');
+// console.log(toggle);
 
 // setting state of to watched button and getting watched page
 headerWatchedButton.addEventListener('click', ev => {
@@ -712,18 +776,6 @@ fetch(trendingMoviesUrl, options)
         modalGenre.textContent = genres;
 
         modalWindow.classList.toggle('is-hidden');
-
-        // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-        // let gallery = new SimpleLightbox(`.gallery a`, {
-        //   captionsData: 'src',
-        //   captionDelay: 250,
-        //   captionPosition: 'outside',
-        //   alertError: false,
-        //   captionHTML: false,
-        // });
-        // console.dir(gallery);
-        // console.log(gallery.elements);
-        // console.log(gallery.options);
       });
     });
   })
@@ -1108,14 +1160,14 @@ pageUp.addEventListener('click', () => {
 // FOOTER
 // FOOTER MODAL
 const footerOpenButton = document.querySelector('.footer-modal-button');
-console.log(footerOpenButton);
+// console.log(footerOpenButton);
 
 const footerCloseButton = document.querySelector('.footer-modal-close-button');
-console.log(footerCloseButton);
+// console.log(footerCloseButton);
 
 const footerModal = document.querySelector('.footer-modal');
 footerModal.style.display = 'none';
-console.log(footerModal);
+// console.log(footerModal);
 
 footerOpenButton.addEventListener('click', () => {
   footerModal.style.display = 'flex';
