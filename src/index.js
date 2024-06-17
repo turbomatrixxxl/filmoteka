@@ -535,6 +535,9 @@ libraryButton.addEventListener('click', ev => {
   headerBottomButtonsContainer.classList.toggle('is-hidden');
 });
 
+let toggle = document.querySelector('label#toggle');
+// toggle.style.left = '19px';
+
 var issChecked = darkThemeButton.checked;
 const curentTheme = load('current-theme');
 
@@ -580,15 +583,6 @@ darkThemeButton.addEventListener('click', ev => {
     // body.style.backgroundColor = 'var(--white)';
   }
 });
-
-let toggle = window.getComputedStyle(
-  document.querySelector('.toggle'),
-  ':after'
-);
-// var str = window
-//   .getComputedStyle(document.querySelector('p'), ':before')
-//   .getPropertyValue('content');
-// console.log(toggle);
 
 // setting state of to watched button and getting watched page
 headerWatchedButton.addEventListener('click', ev => {
