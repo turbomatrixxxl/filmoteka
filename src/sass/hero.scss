@@ -42,7 +42,9 @@
 }
 
 .hero-movie-details-container {
-  padding: 10px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-movie-title {
@@ -58,14 +60,25 @@
 
 .hero-movie-genres-list {
   display: flex;
+  flex-wrap: wrap;
   color: var(--red);
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
 }
 
+.hero-movie-genres-list-item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .hero-year-span {
+  display: flex;
+  align-items: flex-start;
   margin-left: 5px;
+  flex-wrap: nowrap;
+  width: fit-content;
+  flex-grow: 1;
   color: var(--red);
   font-size: 12px;
   font-weight: 500;

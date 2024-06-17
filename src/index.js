@@ -9,8 +9,9 @@ window.addEventListener('keyup', event => {
   if (event.key === 'Escape') {
     if (modalWindow.classList.contains('is-hidden')) {
       return;
+    } else {
+      modalWindow.classList.add('is-hidden');
     }
-    modalWindow.classList.add('is-hidden');
   }
 });
 
@@ -1105,3 +1106,33 @@ pageUp.addEventListener('click', () => {
 });
 
 // FOOTER
+// FOOTER MODAL
+const footerOpenButton = document.querySelector('.footer-modal-button');
+console.log(footerOpenButton);
+
+const footerCloseButton = document.querySelector('.footer-modal-close-button');
+console.log(footerCloseButton);
+
+const footerModal = document.querySelector('.footer-modal');
+footerModal.style.display = 'none';
+console.log(footerModal);
+
+footerOpenButton.addEventListener('click', () => {
+  footerModal.style.display = 'flex';
+});
+
+footerCloseButton.addEventListener('click', () => {
+  footerModal.style.display = 'none';
+});
+
+window.addEventListener('click', e => {
+  if (e.target == footerModal) {
+    footerModal.style.display = 'none';
+  }
+});
+
+window.addEventListener('keyup', event => {
+  if (event.key === 'Escape') {
+    footerModal.style.display = 'none';
+  }
+});
