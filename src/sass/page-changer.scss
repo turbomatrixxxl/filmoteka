@@ -59,4 +59,14 @@
 
 .dots > span {
   vertical-align: text-top;
+  display: none;
+}
+
+// Media querries
+
+// tablet
+@media screen and (width >=768px) {
+  .dots > span {
+    display: initial;
+  }
 }
