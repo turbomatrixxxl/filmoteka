@@ -1,7 +1,7 @@
 //PAGE CHANGER
 // selecting required element
 const element = document.querySelector('.pagination ul');
-
+let currentPage = 1;
 let totalPages = 20;
 let page = 1;
 
@@ -86,12 +86,10 @@ function createPagination(totalPages, page) {
   return liTag; //return the li tag
 }
 
-let currentPage = 1;
-
 const paginationContainer = document.querySelector('.pagination');
-// paginationContainer.addEventListener('click', ev => {
-//   // console.log(ev.currentTarget);
-//   currentPage = ev.currentTarget.querySelector('.active>span').textContent;
-//   console.log(currentPage);
-//   return currentPage;
-// });
+paginationContainer.addEventListener('click', ev => {
+  // console.log(ev.currentTarget);
+  currentPage = ev.currentTarget.querySelector('.active>span').textContent;
+  console.log(currentPage);
+  return currentPage;
+});
