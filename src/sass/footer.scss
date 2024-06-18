@@ -20,7 +20,7 @@
   align-items: center;
   flex-shrink: 1;
 
-  color: #545454;
+  color: var(--gray);
   text-align: center;
   font-family: Roboto;
   font-size: 14px;
@@ -59,7 +59,7 @@
 }
 
 .footer-modal-button {
-  color: var(--blue);
+  color: #ff6b08;
   cursor: pointer;
 }
 .footer-modal-button:hover {
@@ -155,7 +155,7 @@
   // justify-content: space-between;
   padding: 5px;
   margin-bottom: 16px;
-  background-color: white;
+  background-color: var(--white);
   box-shadow: 0 3px 1px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08),
     0 2px 2px rgba(0, 0, 0, 0.12);
   border-radius: 0 0 4px 4px;
@@ -206,7 +206,7 @@
   font-size: 12px;
   line-height: 1.12;
   letter-spacing: normal;
-  color: var(--red);
+  color: #ff6b08;
   padding-top: 4px;
 }
 
