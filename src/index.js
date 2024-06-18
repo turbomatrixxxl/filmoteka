@@ -858,7 +858,7 @@ let desktopQuerry = window.matchMedia('(min-width: 1024px)');
 
 // setting state of to watched button and getting watched page
 headerWatchedButton.addEventListener('click', ev => {
-  heroList.innerHTML = null;
+  heroList.innerHTML = '';
   const moviesIdList = load('watched');
 
   if (moviesIdList === undefined || moviesIdList.length === 0) {
