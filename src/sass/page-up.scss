@@ -1,9 +1,32 @@
 // mobile first
 .page-up {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
   position: fixed;
   right: 20px;
   bottom: 30px;
-  opacity: 0.5;
+  opacity: 0.8;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    scale 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-up:hover {
+  opacity: 100%;
+  background-color: var(--red);
+  transform: scale(1.2);
+}
+
+.icon {
+  cursor: pointer;
+  fill: var(--red);
+  display: inline-block;
 }
 
 // Media querries
