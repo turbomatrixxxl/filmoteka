@@ -1328,7 +1328,7 @@ function renderWatchQueueCards(params) {
       heroLink.setAttribute('genres', genres);
     });
   } else {
-    genres.push(genresName[0].name, genresName[1].name, 'other');
+    genres.push(genresName[0].name, genresName[1].name, 'Other');
     heroLink.setAttribute('genres', genres);
   }
 
