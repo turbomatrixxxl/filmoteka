@@ -88,6 +88,8 @@ function createPagination(totalPages, page) {
 
 const paginationContainer = document.querySelector('.pagination');
 paginationContainer.addEventListener('click', ev => {
+  currentPage = 1;
+  createPagination(totalPages, currentPage);
   // console.log(ev.currentTarget);
   currentPage = ev.currentTarget.querySelector('.active>span').textContent;
   console.log(currentPage);
