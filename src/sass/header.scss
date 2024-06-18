@@ -135,8 +135,20 @@
   border: 1px;
 }
 
+.switched {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 22px;
+  background-color: white;
+  border-radius: 30px;
+  border: 1px;
+}
+
 /* After slide changes */
-.toggle:after {
+.toggle::after {
   content: '';
   position: absolute;
   width: 20px;
@@ -144,7 +156,19 @@
   border-radius: 50%;
   background-color: #ff6b08;
   top: 1px;
-  // left: 1px;
+  left: 1px;
+  transition: all 0.5s;
+}
+
+.switched::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff6b08;
+  top: 1px;
+  left: 19px;
   transition: all 0.5s;
 }
 
@@ -169,10 +193,18 @@ span {
   left: 19px;
 }
 
+.checkbox:not(:checked) + .switched::after {
+  left: 1px;
+}
+
 /* Checkbox checked toggle label bg color */
 .checkbox:checked + .toggle {
   background-color: white;
   border: 1px solid #ff6b08;
+}
+
+.checkbox:not(:checked) + .switched {
+  background-color: #8c8c8c;
 }
 
 /* Checkbox vanished */
@@ -199,7 +231,7 @@ span {
   outline: none;
   border-radius: 100px;
   padding: 10px 14px;
-  color: var(--black);
+  color: black;
   font-size: 12px;
   font-weight: 400;
 }
@@ -261,8 +293,8 @@ span {
   line-height: 1.14;
   letter-spacing: normal;
   text-align: left;
-  color: darkred;
-  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
+  color: #ff6b08;
+  // text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
 }
 
 // Bottom line icon and title

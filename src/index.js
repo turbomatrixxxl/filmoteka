@@ -1,3 +1,18 @@
+// SimpleLightbox import
+// Descris în documentație
+import SimpleLightbox from 'simplelightbox';
+// Import suplimentar de stil
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+// Axios import
+import axios from 'axios';
+
+// Lodash import
+var _ = require('lodash');
+
+// Fetch2 import for Api
+const fetch = require('node-fetch');
+
 // function navigateTo(path) {
 //   // Add a new entry to the history and update the URL
 //   history.pushState(null, null, path);
@@ -46,12 +61,12 @@ const remove = key => {
 };
 
 function setTheme(theme) {
-  if (theme === 'dark') {
+  if (theme == 'dark') {
     remove('current-theme');
     save('current-theme', 'dark');
     document.documentElement.style.setProperty('--white', '#8c8c8c');
     document.documentElement.style.setProperty('--gray', '#fff');
-    document.documentElement.style.setProperty('--ligt-gray', '#fff');
+    document.documentElement.style.setProperty('--light-gray', '#fff');
     document.documentElement.style.setProperty('--red', '#fff');
     document.documentElement.style.setProperty('--footer-bg', '#545454');
     document.documentElement.style.setProperty('--blue', '#b92f2c');
@@ -59,12 +74,12 @@ function setTheme(theme) {
     document.documentElement.style.setProperty('--black', '#fff');
     // alert('dark');
   }
-  if (theme === 'light') {
+  if (theme == 'light') {
     remove('current-theme');
     save('current-theme', 'light');
     document.documentElement.style.setProperty('--white', '#fff');
     document.documentElement.style.setProperty('--gray', '#545454');
-    document.documentElement.style.setProperty('--ligt-gray', '#8c8c8c');
+    document.documentElement.style.setProperty('--light-gray', '#8c8c8c');
     document.documentElement.style.setProperty('--red', '#ff6b08');
     document.documentElement.style.setProperty('--footer-bg', '#f7f7f7');
     document.documentElement.style.setProperty('--blue', 'rgb(16, 16, 211)');
@@ -73,38 +88,49 @@ function setTheme(theme) {
   }
 }
 
-function loadTheme() {
-  //Add this to body onload, gets the current theme. If panelTheme is empty, defaults to blue.
-  if (
-    load('current-theme') === undefined ||
-    load('current-theme').includes('light')
-  ) {
-    setTheme('light');
-  } else {
-    setTheme(load('current-theme'));
-  }
-}
-
-// loadTheme();
-
-// SimpleLightbox import
-// Descris în documentație
-import SimpleLightbox from 'simplelightbox';
-// Import suplimentar de stil
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
-// Axios import
-import axios from 'axios';
-
-// Lodash import
-var _ = require('lodash');
-
-// Fetch2 import for Api
-const fetch = require('node-fetch');
-
-const body = document.body;
+let toggle = document.querySelector('label#toggle');
+// console.log(toggle);
+let toggleClass = toggle.getAttribute('class');
+// console.log(toggleClass);
 
 const darkThemeButton = document.querySelector('.checkbox');
+
+var issChecked = darkThemeButton.checked;
+const curentTheme = load('current-theme');
+
+if (
+  curentTheme === undefined ||
+  issChecked == false ||
+  curentTheme.includes('light')
+) {
+  let toggleClass = toggle.getAttribute('class');
+
+  toggle.classList.remove('switched');
+  toggle.classList.add('toggle');
+  // console.log(toggleClass);
+  console.log(issChecked);
+
+  remove('current-theme');
+  save('current-theme', 'light');
+  setTheme('light');
+  issChecked = false;
+}
+
+if (curentTheme.includes('dark') || issChecked == true) {
+  toggle.classList.remove('toggle');
+  toggle.classList.add('switched');
+  // console.log(toggleClass);
+  console.log(issChecked);
+
+  remove('current-theme');
+  save('current-theme', 'dark');
+  setTheme('dark');
+  issChecked = true;
+}
+
+console.log(issChecked);
+
+const body = document.body;
 
 const libraryButton = document.querySelector('.header-library-button');
 
@@ -535,52 +561,44 @@ libraryButton.addEventListener('click', ev => {
   headerBottomButtonsContainer.classList.toggle('is-hidden');
 });
 
-let toggle = document.querySelector('label#toggle');
-// toggle.style.left = '19px';
-
-var issChecked = darkThemeButton.checked;
-const curentTheme = load('current-theme');
-
-if (curentTheme === undefined || curentTheme.includes('light')) {
-  remove('current-theme');
-  save('current-theme', 'light');
-  setTheme('light');
-  issChecked = false;
-} else {
-  remove('current-theme');
-  save('current-theme', 'dark');
-  setTheme('dark');
-  issChecked = true;
-}
-
-console.log(issChecked);
+// remove('current-theme');
 
 // setting state of to dark theme button
 darkThemeButton.addEventListener('click', ev => {
   var isChecked = darkThemeButton.checked;
 
   if (isChecked) {
-    // const curentTheme = load('current-theme');
+    const curentTheme = load('current-theme');
     if (curentTheme === undefined) {
-      save('current-theme', 'dark');
-      setTheme('dark');
-    } else {
       remove('current-theme');
+      toggle.classList.remove('toggle');
+      toggle.classList.add('switched');
+
       save('current-theme', 'dark');
       setTheme('dark');
     }
-    // body.style.backgroundColor = 'var(--gray)';
-  } else {
-    // const curentTheme = load('current-theme');
+    toggle.classList.remove('toggle');
+    toggle.classList.add('switched');
+
+    remove('current-theme');
+    save('current-theme', 'dark');
+    setTheme('dark');
+  }
+  if (!isChecked) {
+    const curentTheme = load('current-theme');
     if (curentTheme === undefined) {
-      save('current-theme', 'light');
-      setTheme('light');
-    } else {
-      remove('current-theme');
+      toggle.classList.add('toggle');
+      toggle.classList.remove('switch');
+
       save('current-theme', 'light');
       setTheme('light');
     }
-    // body.style.backgroundColor = 'var(--white)';
+    toggle.classList.add('toggle');
+    toggle.classList.remove('switch');
+
+    remove('current-theme');
+    save('current-theme', 'light');
+    setTheme('light');
   }
 });
 
@@ -1128,6 +1146,58 @@ function renderWatchQueueCards(params) {
 }
 
 // PAGE-CHANGER
+import Pagination from 'tui-pagination'; /* ES6 */
+
+const container = document.getElementById('tui-pagination-container');
+
+const pagOptions = {
+  // below default value of options
+  totalItems: 400,
+  itemsPerPage: 20,
+  visiblePages: 20,
+  page: 1,
+  centerAlign: false,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
+const pagination = new Pagination(container, pagOptions);
+
+// const instance = new Pagination(container, options);
+
+// const instance1 = new Pagination(container, { ... });
+
+console.log(pagination.getCurrentPage());
+pagination.setItemsPerPage(20);
+// pagination.paginationsetTotalItems(400);
+pagination.on('afterMove', event => {
+  const currentPage = event.page;
+  console.log(currentPage);
+});
+// pagination.on('beforeMove', event => {
+//   const currentPage = event.page;
+
+//   if (currentPage === 10) {
+//     return false;
+//     // return true;
+//   }
+// });
 
 // PAGE-UP
 const pageUp = document.querySelector('.page-up');
