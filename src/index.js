@@ -881,12 +881,12 @@ headerWatchedButton.addEventListener('click', ev => {
 
     if (mobileQuerry || !tabletQuerry || !desktopQuerry) {
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages >= 2) {
-        element.style.display = 'block';
-        createPagination(totalPages, page);
-      } else {
-        element.style.display = 'none';
-      }
+      // if (totalPages >= 2) {
+      //   element.style.display = 'block';
+      //   createPagination(totalPages, page);
+      // } else {
+      //   element.style.display = 'none';
+      // }
 
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
@@ -912,12 +912,12 @@ headerWatchedButton.addEventListener('click', ev => {
     if (!mobileQuerry || tabletQuerry || !desktopQuerry) {
       perPage = 8;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages >= 2) {
-        element.style.display = 'block';
-        createPagination(totalPages, page);
-      } else {
-        element.style.display = 'none';
-      }
+      // if (totalPages >= 2) {
+      //   element.style.display = 'block';
+      //   createPagination(totalPages, page);
+      // } else {
+      //   element.style.display = 'none';
+      // }
 
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
@@ -943,12 +943,12 @@ headerWatchedButton.addEventListener('click', ev => {
     if (!tabletQuerry || !mobileQuerry || desktopQuerry) {
       perPage = 9;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages >= 2) {
-        element.style.display = 'block';
-        createPagination(totalPages, page);
-      } else {
-        element.style.display = 'none';
-      }
+      // if (totalPages >= 2) {
+      //   element.style.display = 'block';
+      //   createPagination(totalPages, page);
+      // } else {
+      //   element.style.display = 'none';
+      // }
 
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
@@ -1029,12 +1029,12 @@ headerQueuedButton.addEventListener('click', ev => {
 
     if (mobileQuerry || !tabletQuerry || !desktopQuerry) {
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages >= 2) {
-        element.style.display = 'block';
-        createPagination(totalPages, page);
-      } else {
-        element.style.display = 'none';
-      }
+      // if (totalPages >= 2) {
+      //   element.style.display = 'block';
+      //   createPagination(totalPages, page);
+      // } else {
+      //   element.style.display = 'none';
+      // }
 
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
@@ -1060,12 +1060,12 @@ headerQueuedButton.addEventListener('click', ev => {
     if (!mobileQuerry || tabletQuerry || !desktopQuerry) {
       perPage = 8;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages >= 2) {
-        element.style.display = 'block';
-        createPagination(totalPages, page);
-      } else {
-        element.style.display = 'none';
-      }
+      // if (totalPages >= 2) {
+      //   element.style.display = 'block';
+      //   createPagination(totalPages, page);
+      // } else {
+      //   element.style.display = 'none';
+      // }
 
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
@@ -1091,12 +1091,12 @@ headerQueuedButton.addEventListener('click', ev => {
     if (!tabletQuerry || !mobileQuerry || desktopQuerry) {
       perPage = 9;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages >= 2) {
-        element.style.display = 'block';
-        createPagination(totalPages, page);
-      } else {
-        element.style.display = 'none';
-      }
+      // if (totalPages >= 2) {
+      //   element.style.display = 'block';
+      //   createPagination(totalPages, page);
+      // } else {
+      //   element.style.display = 'none';
+      // }
 
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
