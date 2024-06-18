@@ -383,238 +383,6 @@ headerSearchBtn.addEventListener('click', ev => {
               renderCards(element);
             });
 
-            function hero() {
-              paginationContainer.addEventListener('click', ev => {
-                // console.log(ev.currentTarget);
-                currentPage =
-                  ev.currentTarget.querySelector('.active>span').textContent;
-                console.log(currentPage);
-                findUrl = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=en-US&page=${currentPage}`;
-
-                heroList.innerHTML = null;
-                console.log(findUrl);
-
-                fetch(findUrl, options)
-                  .then(res => res.json())
-                  .then(res => {
-                    // console.log(findUrl);
-                    console.log(res.total_pages);
-
-                    if (res.total_pages < 20) {
-                      totalPages = res.total_pages;
-                    }
-                    console.log(res.results);
-                    const movies = res.results;
-                    if (movies.length === 0) {
-                      headerFormErrorMessage.style.display = 'block';
-
-                      fetch(trendingMoviesUrl, options)
-                        .then(res => res.json())
-                        .then(res => {
-                          // console.log(res);
-                          // console.log(res.results);
-                          const movies = res.results;
-                          movies.map(element => {
-                            renderCards(element);
-                          });
-
-                          const heroImagesLink =
-                            document.querySelectorAll('.hero-cards-link');
-                          // console.log(heroImagesLink);
-
-                          heroImagesLink.forEach(link => {
-                            const linkImage =
-                              link.querySelector('.hero-cards-image');
-                            // console.log(linkImage);
-
-                            link.addEventListener('click', ev => {
-                              ev.preventDefault();
-
-                              // console.log(ev.target);
-                              const currentLink = ev.currentTarget;
-                              console.log(currentLink);
-
-                              const linkSrc = currentLink.href;
-                              // console.log(linkSrc);
-                              modalImage.setAttribute('src', linkSrc);
-
-                              const linkId = currentLink.getAttribute('id');
-                              modalImage.setAttribute('id', linkId);
-
-                              // add remove buttons
-                              addRemButtons(
-                                'queued',
-                                linkId,
-                                modalAddToQueueBtn,
-                                modalRemFromQueueBtn
-                              );
-
-                              addRemButtons(
-                                'watched',
-                                linkId,
-                                modalAddToWatchBtn,
-                                modalRemFromWatchBtn
-                              );
-
-                              // add in link necesary attributes from api's
-                              const linkTitle =
-                                currentLink.getAttribute('title');
-                              // console.log(linkTitle);
-                              modalTitle.textContent = linkTitle;
-
-                              const linkVote = currentLink.getAttribute('vote');
-                              // console.log(linkVote);
-                              modalVote.textContent = linkVote;
-
-                              const linkVotes =
-                                currentLink.getAttribute('votes');
-                              // console.log(linkVotes);
-                              modalVotes.textContent = linkVotes;
-
-                              const linkPopurarity =
-                                currentLink.getAttribute('popularity');
-                              // console.log(linkPopurarity);
-                              modalPopularity.textContent = linkPopurarity;
-
-                              const linkOrigTitle =
-                                currentLink.getAttribute('original_title');
-                              // console.log(linkOrigTitle);
-                              modalOrigTitle.textContent = linkOrigTitle;
-
-                              const linkDescription =
-                                currentLink.getAttribute('description');
-                              // console.log(linkDescription);
-                              modalDescription.textContent = linkDescription;
-
-                              const genres = currentLink.getAttribute('genres');
-                              // console.log(genres);
-                              modalGenre.textContent = genres;
-
-                              modalWindow.classList.toggle('is-hidden');
-
-                              // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-                              // let gallery = new SimpleLightbox(`.gallery a`, {
-                              //   captionsData: 'src',
-                              //   captionDelay: 250,
-                              //   captionPosition: 'outside',
-                              //   alertError: false,
-                              //   captionHTML: false,
-                              // });
-                              // console.dir(gallery);
-                              // console.log(gallery.elements);
-                              // console.log(gallery.options);
-                            });
-                          });
-                        })
-                        .catch(err => console.error('error:' + err));
-                    } else {
-                      headerFormErrorMessage.style.display = 'none';
-                    }
-
-                    // create movies cards
-                    movies.map(element => {
-                      renderCards(element);
-                    });
-
-                    // Create modal for each link
-                    const heroImagesLink =
-                      document.querySelectorAll('.hero-cards-link');
-                    // console.log(heroImagesLink);
-
-                    heroImagesLink.forEach(link => {
-                      // const linkImage = link.querySelector('.hero-cards-image');
-                      // console.log(linkImage);
-
-                      link.addEventListener('click', ev => {
-                        ev.preventDefault();
-
-                        // console.log(ev.target);
-                        const currentLink = ev.currentTarget;
-                        console.log(currentLink);
-
-                        const linkId = currentLink.getAttribute('id');
-                        modalImage.setAttribute('id', linkId);
-
-                        // Setting state for each link ad/remove watch/queue button
-                        addRemButtons(
-                          'queued',
-                          linkId,
-                          modalAddToQueueBtn,
-                          modalRemFromQueueBtn
-                        );
-
-                        addRemButtons(
-                          'watched',
-                          linkId,
-                          modalAddToWatchBtn,
-                          modalRemFromWatchBtn
-                        );
-
-                        // condition if link has or not url for image
-                        if (currentLink.href === noImageUrl) {
-                          modalImage.setAttribute('src', noImageUrl);
-                        } else {
-                          // add in link necesary attribute from api's
-                          const linkSrc = currentLink.href;
-                          // console.log(linkSrc);
-                          modalImage.setAttribute('src', linkSrc);
-                        }
-
-                        // add in link necesary attributes from api's
-
-                        const linkTitle = currentLink.getAttribute('title');
-                        // console.log(linkTitle);
-                        modalTitle.textContent = linkTitle;
-
-                        const linkVote = currentLink.getAttribute('vote');
-                        // console.log(linkVote);
-                        modalVote.textContent = linkVote;
-
-                        const linkVotes = currentLink.getAttribute('votes');
-                        // console.log(linkVotes);
-                        modalVotes.textContent = linkVotes;
-
-                        const linkPopurarity =
-                          currentLink.getAttribute('popularity');
-                        // console.log(linkPopurarity);
-                        modalPopularity.textContent = linkPopurarity;
-
-                        const linkOrigTitle =
-                          currentLink.getAttribute('original_title');
-                        // console.log(linkOrigTitle);
-                        modalOrigTitle.textContent = linkOrigTitle;
-
-                        const linkDescription =
-                          currentLink.getAttribute('description');
-                        // console.log(linkDescription);
-                        modalDescription.textContent = linkDescription;
-
-                        const genres = currentLink.getAttribute('genres');
-                        // console.log(genres);
-                        modalGenre.textContent = genres;
-
-                        modalWindow.classList.remove('is-hidden');
-
-                        // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-                        // let gallery = new SimpleLightbox(`.gallery a`, {
-                        //   captionsData: 'src',
-                        //   captionDelay: 250,
-                        //   captionPosition: 'outside',
-                        //   alertError: false,
-                        //   captionHTML: false,
-                        // });
-                        // console.dir(gallery);
-                        // console.log(gallery.elements);
-                        // console.log(gallery.options);
-                      });
-                    });
-                  })
-                  .catch(err => console.error('error:' + err));
-              });
-            }
-
-            searchPagination();
-
             const heroImagesLink =
               document.querySelectorAll('.hero-cards-link');
             // console.log(heroImagesLink);
@@ -697,6 +465,142 @@ headerSearchBtn.addEventListener('click', ev => {
                 // console.log(gallery.options);
               });
             });
+
+            currentPage = 1;
+
+            paginationContainer.addEventListener('click', ev => {
+              // console.log(ev.currentTarget);
+              currentPage =
+                ev.currentTarget.querySelector('.active>span').textContent;
+              console.log(currentPage);
+              findUrl = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=en-US&page=${currentPage}`;
+
+              heroList.innerHTML = null;
+              console.log(findUrl);
+
+              fetch(findUrl, options)
+                .then(res => res.json())
+                .then(res => {
+                  // console.log(findUrl);
+                  console.log(res.total_pages);
+
+                  if (res.total_pages < 20) {
+                    totalPages = res.total_pages;
+                  }
+                  console.log(res.results);
+                  const movies = res.results;
+                  if (movies.length === 0) {
+                    headerFormErrorMessage.style.display = 'block';
+                  } else {
+                    headerFormErrorMessage.style.display = 'none';
+
+                    const movies = res.results;
+                    movies.map(element => {
+                      renderCards(element);
+                      console.log('search');
+                    });
+                  }
+
+                  // create movies cards
+                  movies.map(element => {
+                    renderCards(element);
+                  });
+
+                  // Create modal for each link
+                  const heroImagesLink =
+                    document.querySelectorAll('.hero-cards-link');
+                  // console.log(heroImagesLink);
+
+                  heroImagesLink.forEach(link => {
+                    // const linkImage = link.querySelector('.hero-cards-image');
+                    // console.log(linkImage);
+
+                    link.addEventListener('click', ev => {
+                      ev.preventDefault();
+
+                      // console.log(ev.target);
+                      const currentLink = ev.currentTarget;
+                      console.log(currentLink);
+
+                      const linkId = currentLink.getAttribute('id');
+                      modalImage.setAttribute('id', linkId);
+
+                      // Setting state for each link ad/remove watch/queue button
+                      addRemButtons(
+                        'queued',
+                        linkId,
+                        modalAddToQueueBtn,
+                        modalRemFromQueueBtn
+                      );
+
+                      addRemButtons(
+                        'watched',
+                        linkId,
+                        modalAddToWatchBtn,
+                        modalRemFromWatchBtn
+                      );
+
+                      // condition if link has or not url for image
+                      if (currentLink.href === noImageUrl) {
+                        modalImage.setAttribute('src', noImageUrl);
+                      } else {
+                        // add in link necesary attribute from api's
+                        const linkSrc = currentLink.href;
+                        // console.log(linkSrc);
+                        modalImage.setAttribute('src', linkSrc);
+                      }
+
+                      // add in link necesary attributes from api's
+
+                      const linkTitle = currentLink.getAttribute('title');
+                      // console.log(linkTitle);
+                      modalTitle.textContent = linkTitle;
+
+                      const linkVote = currentLink.getAttribute('vote');
+                      // console.log(linkVote);
+                      modalVote.textContent = linkVote;
+
+                      const linkVotes = currentLink.getAttribute('votes');
+                      // console.log(linkVotes);
+                      modalVotes.textContent = linkVotes;
+
+                      const linkPopurarity =
+                        currentLink.getAttribute('popularity');
+                      // console.log(linkPopurarity);
+                      modalPopularity.textContent = linkPopurarity;
+
+                      const linkOrigTitle =
+                        currentLink.getAttribute('original_title');
+                      // console.log(linkOrigTitle);
+                      modalOrigTitle.textContent = linkOrigTitle;
+
+                      const linkDescription =
+                        currentLink.getAttribute('description');
+                      // console.log(linkDescription);
+                      modalDescription.textContent = linkDescription;
+
+                      const genres = currentLink.getAttribute('genres');
+                      // console.log(genres);
+                      modalGenre.textContent = genres;
+
+                      modalWindow.classList.remove('is-hidden');
+
+                      // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
+                      // let gallery = new SimpleLightbox(`.gallery a`, {
+                      //   captionsData: 'src',
+                      //   captionDelay: 250,
+                      //   captionPosition: 'outside',
+                      //   alertError: false,
+                      //   captionHTML: false,
+                      // });
+                      // console.dir(gallery);
+                      // console.log(gallery.elements);
+                      // console.log(gallery.options);
+                    });
+                  });
+                })
+                .catch(err => console.error('error:' + err));
+            });
           })
           .catch(err => console.error('error:' + err));
       } else {
@@ -708,102 +612,230 @@ headerSearchBtn.addEventListener('click', ev => {
           console.log('search');
         });
 
-        searchPagination();
-      }
+        // Create modal for each link
+        const heroImagesLink = document.querySelectorAll('.hero-cards-link');
+        // console.log(heroImagesLink);
 
-      // create movies cards
-      movies.map(element => {
-        renderCards(element);
-      });
+        heroImagesLink.forEach(link => {
+          // const linkImage = link.querySelector('.hero-cards-image');
+          // console.log(linkImage);
 
-      // Create modal for each link
-      const heroImagesLink = document.querySelectorAll('.hero-cards-link');
-      // console.log(heroImagesLink);
+          link.addEventListener('click', ev => {
+            ev.preventDefault();
 
-      heroImagesLink.forEach(link => {
-        // const linkImage = link.querySelector('.hero-cards-image');
-        // console.log(linkImage);
+            // console.log(ev.target);
+            const currentLink = ev.currentTarget;
+            console.log(currentLink);
 
-        link.addEventListener('click', ev => {
-          ev.preventDefault();
+            const linkId = currentLink.getAttribute('id');
+            modalImage.setAttribute('id', linkId);
 
-          // console.log(ev.target);
-          const currentLink = ev.currentTarget;
-          console.log(currentLink);
+            // Setting state for each link ad/remove watch/queue button
+            addRemButtons(
+              'queued',
+              linkId,
+              modalAddToQueueBtn,
+              modalRemFromQueueBtn
+            );
 
-          const linkId = currentLink.getAttribute('id');
-          modalImage.setAttribute('id', linkId);
+            addRemButtons(
+              'watched',
+              linkId,
+              modalAddToWatchBtn,
+              modalRemFromWatchBtn
+            );
 
-          // Setting state for each link ad/remove watch/queue button
-          addRemButtons(
-            'queued',
-            linkId,
-            modalAddToQueueBtn,
-            modalRemFromQueueBtn
-          );
+            // condition if link has or not url for image
+            if (currentLink.href === noImageUrl) {
+              modalImage.setAttribute('src', noImageUrl);
+            } else {
+              // add in link necesary attribute from api's
+              const linkSrc = currentLink.href;
+              // console.log(linkSrc);
+              modalImage.setAttribute('src', linkSrc);
+            }
 
-          addRemButtons(
-            'watched',
-            linkId,
-            modalAddToWatchBtn,
-            modalRemFromWatchBtn
-          );
+            // add in link necesary attributes from api's
 
-          // condition if link has or not url for image
-          if (currentLink.href === noImageUrl) {
-            modalImage.setAttribute('src', noImageUrl);
-          } else {
-            // add in link necesary attribute from api's
-            const linkSrc = currentLink.href;
-            // console.log(linkSrc);
-            modalImage.setAttribute('src', linkSrc);
-          }
+            const linkTitle = currentLink.getAttribute('title');
+            // console.log(linkTitle);
+            modalTitle.textContent = linkTitle;
 
-          // add in link necesary attributes from api's
+            const linkVote = currentLink.getAttribute('vote');
+            // console.log(linkVote);
+            modalVote.textContent = linkVote;
 
-          const linkTitle = currentLink.getAttribute('title');
-          // console.log(linkTitle);
-          modalTitle.textContent = linkTitle;
+            const linkVotes = currentLink.getAttribute('votes');
+            // console.log(linkVotes);
+            modalVotes.textContent = linkVotes;
 
-          const linkVote = currentLink.getAttribute('vote');
-          // console.log(linkVote);
-          modalVote.textContent = linkVote;
+            const linkPopurarity = currentLink.getAttribute('popularity');
+            // console.log(linkPopurarity);
+            modalPopularity.textContent = linkPopurarity;
 
-          const linkVotes = currentLink.getAttribute('votes');
-          // console.log(linkVotes);
-          modalVotes.textContent = linkVotes;
+            const linkOrigTitle = currentLink.getAttribute('original_title');
+            // console.log(linkOrigTitle);
+            modalOrigTitle.textContent = linkOrigTitle;
 
-          const linkPopurarity = currentLink.getAttribute('popularity');
-          // console.log(linkPopurarity);
-          modalPopularity.textContent = linkPopurarity;
+            const linkDescription = currentLink.getAttribute('description');
+            // console.log(linkDescription);
+            modalDescription.textContent = linkDescription;
 
-          const linkOrigTitle = currentLink.getAttribute('original_title');
-          // console.log(linkOrigTitle);
-          modalOrigTitle.textContent = linkOrigTitle;
+            const genres = currentLink.getAttribute('genres');
+            // console.log(genres);
+            modalGenre.textContent = genres;
 
-          const linkDescription = currentLink.getAttribute('description');
-          // console.log(linkDescription);
-          modalDescription.textContent = linkDescription;
+            modalWindow.classList.remove('is-hidden');
 
-          const genres = currentLink.getAttribute('genres');
-          // console.log(genres);
-          modalGenre.textContent = genres;
-
-          modalWindow.classList.remove('is-hidden');
-
-          // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-          // let gallery = new SimpleLightbox(`.gallery a`, {
-          //   captionsData: 'src',
-          //   captionDelay: 250,
-          //   captionPosition: 'outside',
-          //   alertError: false,
-          //   captionHTML: false,
-          // });
-          // console.dir(gallery);
-          // console.log(gallery.elements);
-          // console.log(gallery.options);
+            // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
+            // let gallery = new SimpleLightbox(`.gallery a`, {
+            //   captionsData: 'src',
+            //   captionDelay: 250,
+            //   captionPosition: 'outside',
+            //   alertError: false,
+            //   captionHTML: false,
+            // });
+            // console.dir(gallery);
+            // console.log(gallery.elements);
+            // console.log(gallery.options);
+          });
         });
-      });
+
+        currentPage = 1;
+
+        paginationContainer.addEventListener('click', ev => {
+          // console.log(ev.currentTarget);
+          currentPage =
+            ev.currentTarget.querySelector('.active>span').textContent;
+          console.log(currentPage);
+          findUrl = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=en-US&page=${currentPage}`;
+
+          heroList.innerHTML = null;
+          console.log(findUrl);
+
+          fetch(findUrl, options)
+            .then(res => res.json())
+            .then(res => {
+              // console.log(findUrl);
+              console.log(res.total_pages);
+
+              if (res.total_pages < 20) {
+                totalPages = res.total_pages;
+              }
+              console.log(res.results);
+              const movies = res.results;
+              if (movies.length === 0) {
+                headerFormErrorMessage.style.display = 'block';
+              } else {
+                headerFormErrorMessage.style.display = 'none';
+
+                const movies = res.results;
+                movies.map(element => {
+                  renderCards(element);
+                  console.log('search');
+                });
+              }
+
+              // create movies cards
+              movies.map(element => {
+                renderCards(element);
+              });
+
+              // Create modal for each link
+              const heroImagesLink =
+                document.querySelectorAll('.hero-cards-link');
+              // console.log(heroImagesLink);
+
+              heroImagesLink.forEach(link => {
+                // const linkImage = link.querySelector('.hero-cards-image');
+                // console.log(linkImage);
+
+                link.addEventListener('click', ev => {
+                  ev.preventDefault();
+
+                  // console.log(ev.target);
+                  const currentLink = ev.currentTarget;
+                  console.log(currentLink);
+
+                  const linkId = currentLink.getAttribute('id');
+                  modalImage.setAttribute('id', linkId);
+
+                  // Setting state for each link ad/remove watch/queue button
+                  addRemButtons(
+                    'queued',
+                    linkId,
+                    modalAddToQueueBtn,
+                    modalRemFromQueueBtn
+                  );
+
+                  addRemButtons(
+                    'watched',
+                    linkId,
+                    modalAddToWatchBtn,
+                    modalRemFromWatchBtn
+                  );
+
+                  // condition if link has or not url for image
+                  if (currentLink.href === noImageUrl) {
+                    modalImage.setAttribute('src', noImageUrl);
+                  } else {
+                    // add in link necesary attribute from api's
+                    const linkSrc = currentLink.href;
+                    // console.log(linkSrc);
+                    modalImage.setAttribute('src', linkSrc);
+                  }
+
+                  // add in link necesary attributes from api's
+
+                  const linkTitle = currentLink.getAttribute('title');
+                  // console.log(linkTitle);
+                  modalTitle.textContent = linkTitle;
+
+                  const linkVote = currentLink.getAttribute('vote');
+                  // console.log(linkVote);
+                  modalVote.textContent = linkVote;
+
+                  const linkVotes = currentLink.getAttribute('votes');
+                  // console.log(linkVotes);
+                  modalVotes.textContent = linkVotes;
+
+                  const linkPopurarity = currentLink.getAttribute('popularity');
+                  // console.log(linkPopurarity);
+                  modalPopularity.textContent = linkPopurarity;
+
+                  const linkOrigTitle =
+                    currentLink.getAttribute('original_title');
+                  // console.log(linkOrigTitle);
+                  modalOrigTitle.textContent = linkOrigTitle;
+
+                  const linkDescription =
+                    currentLink.getAttribute('description');
+                  // console.log(linkDescription);
+                  modalDescription.textContent = linkDescription;
+
+                  const genres = currentLink.getAttribute('genres');
+                  // console.log(genres);
+                  modalGenre.textContent = genres;
+
+                  modalWindow.classList.remove('is-hidden');
+
+                  // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
+                  // let gallery = new SimpleLightbox(`.gallery a`, {
+                  //   captionsData: 'src',
+                  //   captionDelay: 250,
+                  //   captionPosition: 'outside',
+                  //   alertError: false,
+                  //   captionHTML: false,
+                  // });
+                  // console.dir(gallery);
+                  // console.log(gallery.elements);
+                  // console.log(gallery.options);
+                });
+              });
+            })
+            .catch(err => console.error('error:' + err));
+        });
+      }
     })
     .catch(err => console.error('error:' + err));
 });
@@ -1632,138 +1664,6 @@ function renderWatchQueueCards(params) {
 }
 
 // PAGE-CHANGER
-function searchPagination() {
-  paginationContainer.addEventListener('click', ev => {
-    // console.log(ev.currentTarget);
-    currentPage = ev.currentTarget.querySelector('.active>span').textContent;
-    console.log(currentPage);
-    findUrl = `https://api.themoviedb.org/3/search/movie?query=${searchText}&include_adult=true&language=en-US&page=${currentPage}`;
-
-    heroList.innerHTML = null;
-    console.log(findUrl);
-
-    fetch(findUrl, options)
-      .then(res => res.json())
-      .then(res => {
-        // console.log(findUrl);
-        console.log(res.total_pages);
-
-        if (res.total_pages < 20) {
-          totalPages = res.total_pages;
-        }
-        console.log(res.results);
-        const movies = res.results;
-        if (movies.length === 0) {
-          headerFormErrorMessage.style.display = 'block';
-        } else {
-          headerFormErrorMessage.style.display = 'none';
-
-          const movies = res.results;
-          movies.map(element => {
-            renderCards(element);
-            console.log('search');
-          });
-
-          searchPagination();
-        }
-
-        // create movies cards
-        movies.map(element => {
-          renderCards(element);
-        });
-
-        // Create modal for each link
-        const heroImagesLink = document.querySelectorAll('.hero-cards-link');
-        // console.log(heroImagesLink);
-
-        heroImagesLink.forEach(link => {
-          // const linkImage = link.querySelector('.hero-cards-image');
-          // console.log(linkImage);
-
-          link.addEventListener('click', ev => {
-            ev.preventDefault();
-
-            // console.log(ev.target);
-            const currentLink = ev.currentTarget;
-            console.log(currentLink);
-
-            const linkId = currentLink.getAttribute('id');
-            modalImage.setAttribute('id', linkId);
-
-            // Setting state for each link ad/remove watch/queue button
-            addRemButtons(
-              'queued',
-              linkId,
-              modalAddToQueueBtn,
-              modalRemFromQueueBtn
-            );
-
-            addRemButtons(
-              'watched',
-              linkId,
-              modalAddToWatchBtn,
-              modalRemFromWatchBtn
-            );
-
-            // condition if link has or not url for image
-            if (currentLink.href === noImageUrl) {
-              modalImage.setAttribute('src', noImageUrl);
-            } else {
-              // add in link necesary attribute from api's
-              const linkSrc = currentLink.href;
-              // console.log(linkSrc);
-              modalImage.setAttribute('src', linkSrc);
-            }
-
-            // add in link necesary attributes from api's
-
-            const linkTitle = currentLink.getAttribute('title');
-            // console.log(linkTitle);
-            modalTitle.textContent = linkTitle;
-
-            const linkVote = currentLink.getAttribute('vote');
-            // console.log(linkVote);
-            modalVote.textContent = linkVote;
-
-            const linkVotes = currentLink.getAttribute('votes');
-            // console.log(linkVotes);
-            modalVotes.textContent = linkVotes;
-
-            const linkPopurarity = currentLink.getAttribute('popularity');
-            // console.log(linkPopurarity);
-            modalPopularity.textContent = linkPopurarity;
-
-            const linkOrigTitle = currentLink.getAttribute('original_title');
-            // console.log(linkOrigTitle);
-            modalOrigTitle.textContent = linkOrigTitle;
-
-            const linkDescription = currentLink.getAttribute('description');
-            // console.log(linkDescription);
-            modalDescription.textContent = linkDescription;
-
-            const genres = currentLink.getAttribute('genres');
-            // console.log(genres);
-            modalGenre.textContent = genres;
-
-            modalWindow.classList.remove('is-hidden');
-
-            // setting the modal window gallery using the SimpleLightbox library and adding "alt" caption title on bottom with 250 ms delay
-            // let gallery = new SimpleLightbox(`.gallery a`, {
-            //   captionsData: 'src',
-            //   captionDelay: 250,
-            //   captionPosition: 'outside',
-            //   alertError: false,
-            //   captionHTML: false,
-            // });
-            // console.dir(gallery);
-            // console.log(gallery.elements);
-            // console.log(gallery.options);
-          });
-        });
-      })
-      .catch(err => console.error('error:' + err));
-  });
-}
 
 function heroPagination() {
   paginationContainer.addEventListener('click', ev => {
