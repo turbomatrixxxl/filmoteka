@@ -1,3 +1,536 @@
+.is-hidden {
+  display: none;
+}
+
 .header-container {
-  background-color: bisque;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 14px 14px 24px;
+
+  height: 460px;
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+      274deg,
+      rgba(0, 0, 0, 0.49) -2.09%,
+      rgba(0, 0, 0, 0) 99.83%
+    ),
+    lightgray 0px -194px / 100% 216.456% no-repeat;
+  background-image: url(../images/header-background.png);
+
+  background-size: 100vw 100vh;
+}
+
+// Header top
+
+.header-all-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// Header first line (home and library buttons)
+
+.header-first-line-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-home-library-container {
+  display: flex;
+  gap: 4px;
+}
+
+.header-home-button {
+  display: flex;
+  padding: 10px 26px;
+  align-items: flex-start;
+  gap: 10px;
+
+  border: none;
+  border-radius: 100px;
+  background-color: black;
+
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-home-button-link {
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.header-home-button:hover,
+.header-home-button:focus {
+  transform: scale(1.05);
+  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
+}
+
+.header-library-button {
+  cursor: pointer;
+  display: flex;
+  padding: 10px 22px;
+  align-items: flex-start;
+  gap: 10px;
+
+  border: none;
+  border-radius: 100px;
+  background: white;
+
+  color: black;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-library-button:hover,
+.header-library-button:focus {
+  transform: scale(1.05);
+  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
+  color: white;
+  background-color: black;
+}
+
+// Theme changer button
+
+.header-theme-switcher {
+  position: absolute;
+  top: 14px;
+  right: 5px;
+}
+
+/* toggle in label designing */
+.toggle {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 22px;
+  background-color: #8c8c8c;
+  border-radius: 30px;
+  border: 1px;
+}
+
+.switched {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 40px;
+  height: 22px;
+  background-color: white;
+  border-radius: 30px;
+  border: 1px;
+}
+
+/* After slide changes */
+.toggle::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff6b08;
+  top: 1px;
+  left: 1px;
+  transition: all 0.5s;
+}
+
+.switched::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ff6b08;
+  top: 1px;
+  left: 19px;
+  transition: all 0.5s;
+}
+
+.theme-on-of {
+  display: inline-flex;
+  padding: 2.5px;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Toggle text */
+span {
+  display: inline-block;
+  font-size: 9px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Checkbox checked effect */
+.checkbox:checked + .toggle::after {
+  left: 19px;
+}
+
+.checkbox:not(:checked) + .switched::after {
+  left: 1px;
+}
+
+/* Checkbox checked toggle label bg color */
+.checkbox:checked + .toggle {
+  background-color: white;
+  border: 1px solid #ff6b08;
+}
+
+.checkbox:not(:checked) + .switched {
+  background-color: #8c8c8c;
+}
+
+/* Checkbox vanished */
+.checkbox {
+  display: none;
+}
+
+// Search movie form
+
+.search-form {
+  position: relative;
+  max-width: 252px;
+  height: 34px;
+  flex-shrink: 0;
+
+  border-radius: 100px;
+  border: none;
+  background: white;
+}
+
+.search-form-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 100px;
+  padding: 10px 14px;
+  color: black;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.search-form-input::placeholder {
+  color: black;
+}
+
+.search-form-button {
+  cursor: pointer;
+  height: 14px;
+  width: 14px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  position: absolute;
+  top: 10px;
+  right: 14px;
+
+  transition: text-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-form-button:hover,
+.search-form-button:focus {
+  box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
+  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
+  transform: scale(1.15);
+}
+
+.search-form-icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 3px;
+  stroke: black;
+  fill: white;
+}
+
+// Error message container
+.error-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__error {
+  display: none;
+  position: absolute;
+  border: none;
+  top: 20px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ff6b08;
+  // text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
+}
+
+// Bottom line icon and title
+
+.header-bottom-icon-and-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+// Main title and icon
+
+.header-main-title {
+  color: white;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.bottom-movie-icon {
+  width: 32px;
+  height: 32px;
+}
+
+// Watched and queue button
+
+.header-bottom-buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.header-bottom-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.watched-buton {
+  cursor: pointer;
+  display: flex;
+  padding: 10px 23px;
+  align-items: flex-start;
+  width: fit-content;
+  justify-content: center;
+  gap: 10px;
+
+  border: none;
+  border-radius: 100px;
+  background: white;
+  box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
+
+  color: #ff6b08;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.queued-button {
+  cursor: pointer;
+  display: flex;
+  padding: 10px 24px;
+  align-items: flex-start;
+  width: fit-content;
+  justify-content: center;
+  gap: 10px;
+
+  border: none;
+  border-radius: 100px;
+  background-color: white;
+
+  color: #ff6b08;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  transition: text-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.watched-buton:hover,
+.watched-buton:focus,
+.queued-button:hover,
+.queued-button:focus {
+  transform: scale(1.05);
+  text-shadow: 0 0 5px white, 0 0 10px #00ffff, 0 0 15px #7fff00, 0 0 20px white;
+  color: white;
+  background-color: #ff6b08;
+  box-shadow: 0px 0px 7px 0px rgba(27, 27, 27, 0.15);
+}
+
+// Media querries pentru tableta si desktop
+@media screen and (width >=768px) {
+  .header-container {
+    padding: 16px;
+
+    height: 222px;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        274deg,
+        rgba(0, 0, 0, 0.49) -2.09%,
+        rgba(0, 0, 0, 0) 99.83%
+      ),
+      lightgray -4.19px -124.143px / 119.345% 213.491% no-repeat;
+    background-image: url(../images/header-background-2x.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  .header-theme-switcher {
+    position: static;
+  }
+
+  .header-top {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+
+    gap: 4px;
+  }
+
+  .header-home-button {
+    padding: 12px 24px;
+  }
+
+  .header-library-button {
+    padding: 12px 20px;
+  }
+
+  // Search movie form
+  .search-form-input {
+    font-size: 14px;
+  }
+
+  .search-form {
+    width: 165px;
+    height: 38px;
+  }
+
+  .error-container {
+    max-width: none;
+  }
+
+  // Bottom line icon and title
+
+  .header-bottom-icon-and-title {
+    justify-content: flex-start;
+  }
+
+  // Main title and icon
+
+  .header-main-title {
+    font-size: 40px;
+  }
+
+  .bottom-movie-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  // bottom buttons watched and queue
+
+  .header-bottom-buttons-container {
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}
+
+@media screen and (width >=1024px) {
+  .header-container {
+    height: 316px;
+    background-color: #d3d3d3;
+    background-image: url(../images/header-background-2x\(1\).png);
+    background-position: 0 0, 0 -194px;
+    background-repeat: no-repeat;
+    /* background-size: auto, 100% 216.456%; */
+    background-size: 100vw 100vh;
+    background-attachment: scroll, scroll;
+    background-origin: padding-box, padding-box;
+    background-clip: border-box, border-box;
+    border-radius: 15px;
+    padding: 16px 32px 32px;
+  }
+
+  .header-top {
+    display: flex;
+    gap: 8px;
+  }
+
+  .header-home-library-container {
+    gap: 8px;
+  }
+
+  .header-home-button {
+    padding: 14px 32px;
+  }
+
+  .header-library-button {
+    padding: 14px 24px;
+  }
+
+  // Search movie form
+
+  .search-form {
+    width: 187px;
+    height: 42px;
+  }
+
+  // Bottom line icon and title
+
+  .header-bottom-icon-and-title {
+    gap: 16px;
+  }
+
+  // Main title and icon
+
+  .header-main-title {
+    font-size: 64px;
+  }
+
+  .bottom-movie-icon {
+    width: 59px;
+    height: 59px;
+  }
 }

@@ -1,1 +1,83 @@
-<header class="header-container">header-container</header>
+<header class="header-container">
+  <div class="header-all-top">
+    <div class="header-top">
+      <div class="header-first-line-buttons">
+        <div class="header-home-library-container">
+          <button class="header-home-button">
+            <a
+              class="header-home-button-link"
+              href=""
+              onclick="navigateTo('./index.html')"
+              >Home</a
+            >
+          </button>
+          <button class="header-library-button">My Library</button>
+        </div>
+      </div>
+      <div class="hero-form-and-error-container">
+        <form class="search-form" style="display: block">
+          <input
+            class="search-form-input"
+            name="query"
+            placeholder="Movie search"
+            aria-label="movie search"
+            autocomplete="off"
+          />
+          <button type="submit" class="search-form-button" aria-label="search">
+            <svg class="search-form-icon">
+              <use href="./images/icons.svg#icon-search"></use>
+            </svg>
+          </button>
+        </form>
+        <div class="error-container">
+          <p class="header__error">
+            Search result is not successful. Enter the correct movie name and
+            press enter
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="header-theme-switcher">
+      <input type="checkbox" id="switch" role="switch" class="checkbox" />
+      <label for="switch" id="toggle">
+        <p class="theme-on-of">
+          <span>OFF</span>
+          <span>ON</span>
+        </p>
+      </label>
+    </div>
+  </div>
+
+  <div class="header-bottom-line">
+    <div class="header-bottom-icon-and-title">
+      <svg class="bottom-movie-icon">
+        <use href="./images/icons.svg#icon-film"></use>
+      </svg>
+      <h1 class="header-main-title">Filmoteka</h1>
+    </div>
+    <div class="is-hidden header-bottom-buttons-container">
+      <div class="header-bottom-buttons header-bottom-buttons-watched">
+        <button type="button" class="watched-buton header-watched-button">
+          Watched
+        </button>
+        <button
+          type="button"
+          class="is-hidden watched-buton header-clear-watched-button"
+        >
+          clear watched list
+        </button>
+      </div>
+      <div class="header-bottom-buttons header-bottom-buttons-queue">
+        <button type="button" class="queued-button header-queue-button">
+          queue
+        </button>
+        <button
+          type="button"
+          class="is-hidden queued-button header-clear-queue-button"
+        >
+          clear queue list
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
