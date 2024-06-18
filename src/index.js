@@ -1146,14 +1146,19 @@ function renderCards(params) {
         res.genres.map(x => {
           if (x.id === element) {
             genres.push(x.name);
-            heroLink.setAttribute('genres', genres);
+            if (genres.length <= 3) {
+              heroLink.setAttribute('genres', genres);
+            } else {
+              let redGenres = genres.slice(0, 2);
+              heroLink.setAttribute('genres', `${redGenres},Other`);
+            }
           }
         });
       })
       .catch(err => console.error('error:' + err));
   });
 
-  heroLink.setAttribute('genres', genres);
+  // heroLink.setAttribute('genres', genres);
 
   heroLink.setAttribute('class', `hero-cards-link`);
   heroLink.setAttribute('title', `${params.title}`);
