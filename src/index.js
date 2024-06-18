@@ -877,14 +877,17 @@ headerWatchedButton.addEventListener('click', ev => {
     };
 
     let perPage = 4;
+    page = 1;
 
     if (mobileQuerry || !tabletQuerry || !desktopQuerry) {
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages < 2) {
-        element.style.display = 'none';
-      } else {
+      if (totalPages >= 2) {
         element.style.display = 'block';
+        createPagination(totalPages, page);
+      } else {
+        element.style.display = 'none';
       }
+
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
       const pageItems = moviesIdList.slice(startIndex, endIndex);
@@ -909,11 +912,13 @@ headerWatchedButton.addEventListener('click', ev => {
     if (!mobileQuerry || tabletQuerry || !desktopQuerry) {
       perPage = 8;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages < 2) {
-        element.style.display = 'none';
-      } else {
+      if (totalPages >= 2) {
         element.style.display = 'block';
+        createPagination(totalPages, page);
+      } else {
+        element.style.display = 'none';
       }
+
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
       const pageItems = moviesIdList.slice(startIndex, endIndex);
@@ -938,11 +943,13 @@ headerWatchedButton.addEventListener('click', ev => {
     if (!tabletQuerry || !mobileQuerry || desktopQuerry) {
       perPage = 9;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages < 2) {
-        element.style.display = 'none';
-      } else {
+      if (totalPages >= 2) {
         element.style.display = 'block';
+        createPagination(totalPages, page);
+      } else {
+        element.style.display = 'none';
       }
+
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
       const pageItems = moviesIdList.slice(startIndex, endIndex);
@@ -1022,11 +1029,13 @@ headerQueuedButton.addEventListener('click', ev => {
 
     if (mobileQuerry || !tabletQuerry || !desktopQuerry) {
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages < 2) {
-        element.style.display = 'none';
-      } else {
+      if (totalPages >= 2) {
         element.style.display = 'block';
+        createPagination(totalPages, page);
+      } else {
+        element.style.display = 'none';
       }
+
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
       const pageItems = moviesIdList.slice(startIndex, endIndex);
@@ -1051,10 +1060,11 @@ headerQueuedButton.addEventListener('click', ev => {
     if (!mobileQuerry || tabletQuerry || !desktopQuerry) {
       perPage = 8;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages < 2) {
-        element.style.display = 'none';
-      } else {
+      if (totalPages >= 2) {
         element.style.display = 'block';
+        createPagination(totalPages, page);
+      } else {
+        element.style.display = 'none';
       }
 
       const startIndex = (currentPage - 1) * perPage;
@@ -1081,11 +1091,13 @@ headerQueuedButton.addEventListener('click', ev => {
     if (!tabletQuerry || !mobileQuerry || desktopQuerry) {
       perPage = 9;
       totalPages = Math.ceil(moviesIdList.length / perPage);
-      if (totalPages < 2) {
-        element.style.display = 'none';
-      } else {
+      if (totalPages >= 2) {
         element.style.display = 'block';
+        createPagination(totalPages, page);
+      } else {
+        element.style.display = 'none';
       }
+
       const startIndex = (currentPage - 1) * perPage;
       const endIndex = startIndex + perPage;
       const pageItems = moviesIdList.slice(startIndex, endIndex);
