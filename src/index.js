@@ -391,7 +391,8 @@ headerSearchBtn.addEventListener('click', ev => {
       if (2 <= res.total_pages < 20) {
         totalPages = res.total_pages;
         element.innerHTML = createPagination(totalPages, page);
-      } else {
+      }
+      if (res.total_pages > 20) {
         page = 1;
         totalPages = 20;
         element.innerHTML = createPagination(totalPages, page);
